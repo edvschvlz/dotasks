@@ -1,8 +1,12 @@
 import Card from "../../Components/Card";
+import "./Login.css";
+
 
 const Login = () => {
     return (
-        <Card/>
+        <div className="login">
+            <Card/>
+        </div>  
     )
 }
 
