@@ -1,4 +1,4 @@
-import { server } from "./http";
+import server from './http.js';
 
 const port = process.env.PORT || 5000;
 
