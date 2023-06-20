@@ -1,0 +1,80 @@
+.card {
+  width: 350px;
+  background-color: var(--branco);
+  border: none;
+  box-shadow: 5px 5px 5px -3px rgba(0, 0, 0, 0.1);
+  padding: 1.8em;
+  display: flex;
+  align-items: center;
+  & form {
+    width: 100%;
+  }
+}
+
+.container-input {
+  width: 100%;
+  & input {
+    font-size: 0.9em;
+  }
+}
+
+.card-link {
+  font-size: 0.8em;
+  text-decoration: none;
+  color: black;
+  padding: 1.25em;
+}
+
+.botao-entrar,
+.botao-registrar {
+  border: none;
+  color: white;
+  width: 100%;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 0.9em;
+  padding: 0.5em 0;
+  border-radius: 0.3em;
+  transition: all 0.1s ease-in-out;
+}
+
+.botao-entrar {
+  background-color: var(--azul);
+}
+
+.botao-entrar:hover {
+  background-color: #4d79cb;
+}
+
+.botao-registrar {
+  background-color: var(--verde);
+  display: flex;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+}
+
+.botao-registrar:hover {
+  background-color: #85b33b;
+}
+
+.botao-google {
+  background-image: url('../../../assets/img/google.png');
+  background-repeat: no-repeat;
+  background-position: 0.5em;
+  background-color: var(--cinza-medio);
+  border: none;
+  color: white;
+  width: 100%;
+  font-size: 0.9em;
+  padding: 0.5em 0.8em;
+  border-radius: 0.3em;
+  margin-top: 0.6em;
+  font-weight: 500;
+  transition: all 0.1s ease-in-out;
+  text-align: end;
+}
+
+.botao-google:hover {
+  background-color: #a2a2a2;
+}
