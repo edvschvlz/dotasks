@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 import logoNav from '../../assets/img/logo.svg'
 import user from '../../assets/img/user.png'
-import './NavbarProjetos.css';
+import './Navbar.css';
 
-function NavbarProjetos(){
+function Navbar(){
     return (
         <div className='nav'>
             <div className="barra-nav">
@@ -12,11 +12,6 @@ function NavbarProjetos(){
                 </div>
                 
                 <div className='user-bell-conteiner'>
-                    <div className='button-ch'>
-                        <button type="button" class="btn-sair">Sair</button>
-                        <button type="button" class="btn-comp">Compartilhar</button>
-                    </div>
-
                     <div className="bell">
                         <i className="bi bi-bell-fill"></i>
                     </div>
@@ -37,4 +32,4 @@ function NavbarProjetos(){
     )
 }
 
-export default NavbarProjetos;
+export default Navbar;
