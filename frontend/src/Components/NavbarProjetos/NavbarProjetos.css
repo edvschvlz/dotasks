@@ -35,7 +35,7 @@ a{
     margin: 0 !important;
 }
 .bell{
-    width: 100%;
+    width: 0%;
     display: flex;
     justify-content: flex-end;
     padding: 2% 1% 0% 0%;
@@ -58,4 +58,17 @@ a{
     width: 4%;
     display: flex;
     justify-content: flex-end;
+}
+
+.button-ch{
+    width: 100%;
+    display: flex;
+    padding: 2% 1% 2% 64%;
+}
+
+.btn.btn-outline-primary{
+    width: 100%;
+    margin: 5%;
+    color: #5686e1;
+    font-weight: bold;
 }
