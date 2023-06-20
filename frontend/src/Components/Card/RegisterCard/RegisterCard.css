@@ -1,0 +1,24 @@
+.card {
+  width: 350px;
+  background-color: var(--branco);
+  border: none;
+  box-shadow: 5px 5px 5px -3px rgba(0, 0, 0, 0.1);
+  padding: 1.8em;
+  display: flex;
+  align-items: center;
+  & form {
+    width: 100%;
+  }
+}
+
+.register-card-link {
+  font-size: 0.8em;
+  text-decoration: none;
+  color: black;
+  padding-top: 1.25em;
+  margin-bottom: 0;
+}
+
+.register-card-link Link {
+  text-decoration: none;
+}
