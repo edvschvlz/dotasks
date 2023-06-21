@@ -13,18 +13,13 @@ function Projects(){
                             <i class="bi bi-search" type="submit"></i>
                     </form>
                     </div>
-                    
                 </div>
             </div>  
 
             <div className='project'>
                 <div className='project-card'>PROJETO</div>
-                <div className='project-card'>PROJETO</div>
-                <div className='project-card'>PROJETO</div>
-                <div className='project-card'>PROJETO</div>
-                <div className='project-card'>PROJETO</div>
-                <div className='project-card'>PROJETO</div>
-            </div>          
+            </div>   
+
         </div>
     )
 }

@@ -1,0 +1,82 @@
+.card {
+  border-radius: 10px;
+  width: 350px;
+  background-color: var(--branco);
+  border: none;
+  box-shadow: 5px 5px 5px -3px rgba(0, 0, 0, 0.1);
+  padding: 1.8em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  & form {
+    width: 100%;
+  }
+}
+
+.container-input {
+  width: 100%;
+  & input {
+    font-size: 0.9em;
+  }
+}
+
+.link {
+  font-size: 0.8em;
+  text-decoration: none;
+  color: black;
+  padding: 1.25em;
+}
+
+.button_login,
+.button_register {
+  border: none;
+  color: white;
+  width: 35%;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 0.9em;
+  padding: 0.5em 0;
+  border-radius: 0.3em;
+  transition: all 0.1s ease-in-out;
+  margin-left: 4em;
+}
+
+.button_login {
+  background-color: var(--azul);
+}
+
+.button_login:hover {
+  background-color: #4d79cb;
+}
+
+.button_register {
+  background-color: var(--verde);
+  display: flex;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+}
+
+.button_register:hover {
+  background-color: #85b33b;
+}
+
+.button_close {
+  background-position: 0.5em;
+  background-color: var(--cinza-medio);
+  border: none;
+  color: white;
+  width: 15%;
+  font-size: 0.9em;
+  padding: 0.5em 0.95em 0.5em 0em;
+  border-radius: 0.3em;
+  margin-top: 0.6em;
+  font-weight: 500;
+  transition: all 0.1s ease-in-out;
+  text-align: end;
+  margin-left: 1em;
+}
+
+.button_google:hover {
+  background-color: #a2a2a2;
+}
