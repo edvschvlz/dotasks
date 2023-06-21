@@ -1,14 +1,14 @@
 import RegisterCard from '../../Components/Card/RegisterCard';
-import Logo from '../../assets/img/logo.svg'
-import './Register.css'
+import Logo from '../../assets/img/logo.svg';
+import styles from './Register.module.css';
 
 const Register = () => {
-    return (
-        <div className="register">
-            <img src={Logo} alt="logo" />
-            <RegisterCard/>
-        </div>  
-    )
-}
+  return (
+    <div className={styles.register}>
+      <img src={Logo} alt="logo" />
+      <RegisterCard />
+    </div>
+  );
+};
 
 export default Register;

@@ -4,7 +4,6 @@ import Login from './Pages/Login';
 import Register from './Pages/Register';
 import ChangePassword1 from './Pages/ChangePassword1';
 import ChangePassword2 from './Pages/ChangePassword2';
-//import DefaultPage from "./Pages/DefaultPage";
 
 function App() {
   return (
