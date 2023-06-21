@@ -13,8 +13,8 @@ function NavbarProjetos(){
                 
                 <div className='user-bell-conteiner'>
                     <div className='button-ch'>
-                        <button type="button" class="btn btn-outline-primary">Sair</button>
-                        <button type="button" class="btn btn-outline-primary">Compartilhar</button>
+                        <button type="button" class="btn-sair">Sair</button>
+                        <button type="button" class="btn-comp">Compartilhar</button>
                     </div>
 
                     <div className="bell">

@@ -1,7 +1,14 @@
-import NavbarProjetos from '../../Components/NavbarProjetos/Index';
+import Navbar from "../../Components/Navbar/Index";
+import Project from "../../Components/Projetcs/Index";
 
 const Home = () => {
-  return <NavbarProjetos />;
-};
+    return (
+        <>
+            <Navbar />
+            <Project />
+            
+        </>
+    )
+}
 
 export default Home;
