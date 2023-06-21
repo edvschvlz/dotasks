@@ -4,6 +4,7 @@ import Login from './Pages/Login';
 import Register from './Pages/Register';
 import ChangePassword1 from './Pages/ChangePassword1';
 import ChangePassword2 from './Pages/ChangePassword2';
+import AccountSettings from './Pages/AccountSettings';
 
 function App() {
   return (
@@ -14,6 +15,8 @@ function App() {
         <Route path="/change-password-1" element={<ChangePassword1 />} />
         <Route path="/change-password-2" element={<ChangePassword2 />} />
         <Route path="/home" element={<Home />} />
+        {/* a rota account-settings é para teste de modal */}
+        <Route path="/account-settings" element={<AccountSettings />} />
       </Routes>
     </BrowserRouter>
   );
