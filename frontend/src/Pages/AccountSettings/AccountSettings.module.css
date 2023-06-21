@@ -1,0 +1,8 @@
+.account_settings {
+  background-color: var(--cinza);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
