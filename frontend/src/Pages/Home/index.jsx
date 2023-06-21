@@ -1,9 +1,13 @@
 import Navbar from "../../Components/Navbar/Index";
+import Project from "../../Components/Projetcs/Index";
 
 const Home = () => {
     return (
-        <Navbar />
-
+        <>
+            <Navbar />
+            <Project />
+            
+        </>
     )
 }
 
