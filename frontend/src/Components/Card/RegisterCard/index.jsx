@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom';
-import './RegisterCard.css';
+import styles from './RegisterCard.module.css';
 
 const RegisterCard = () => {
   return (
-    <div className="card">
-      <p className="register-card-titulo">Nova Conta</p>
+    <div className={styles.card}>
+      <p>Nova Conta</p>
       <form>
-        <div className="mb-3 container-input">
+        <div className={`mb-3 container-input`}>
           <input
             type="text"
             className="form-control"
@@ -15,7 +15,7 @@ const RegisterCard = () => {
             required
           />
         </div>
-        <div className="mb-3 container-input">
+        <div className={`mb-3 container-input`}>
           <input
             type="email"
             className="form-control"
@@ -24,7 +24,7 @@ const RegisterCard = () => {
             required
           />
         </div>
-        <div className="mb-3 container-input">
+        <div className={`mb-3 container-input`}>
           <input
             type="password"
             className="form-control"
@@ -33,7 +33,7 @@ const RegisterCard = () => {
             required
           />
         </div>
-        <div className="mb-3 container-input">
+        <div className={`mb-3 container-input`}>
           <input
             type="password"
             className="form-control"
@@ -42,13 +42,13 @@ const RegisterCard = () => {
             required
           />
         </div>
-        <button type="submit" className="botao-entrar">
+        <button type="submit" className={styles.button_register}>
           Registrar
         </button>
       </form>
-      <p className="register-card-link">
-        Já possui conta? <Link to="/">Clique aqui para fazer login</Link>
-      </p>
+      <Link to="/" className={styles.link}>
+        Já possui conta? Clique aqui para fazer login
+      </Link>
     </div>
   );
 };

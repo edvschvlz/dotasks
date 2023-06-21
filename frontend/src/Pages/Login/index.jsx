@@ -1,10 +1,10 @@
-import './Login.css';
 import Logo from '../../assets/img/logo.svg';
 import LoginCard from '../../Components/Card/LoginCard';
+import styles from './Login.module.css';
 
 const Login = () => {
   return (
-    <div className="login">
+    <div className={styles.login}>
       <img src={Logo} alt="logo" />
       <LoginCard />
     </div>

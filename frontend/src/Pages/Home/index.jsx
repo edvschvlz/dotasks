@@ -1,10 +1,7 @@
-import Navbar from "../../Components/Navbar/Index";
-import NavbarProjetos from "../../Components/NavbarProjetos/Index";
+import NavbarProjetos from '../../Components/NavbarProjetos/Index';
 
 const Home = () => {
-    return (
-        <NavbarProjetos />
-    )
-}
+  return <NavbarProjetos />;
+};
 
 export default Home;

@@ -1,12 +1,12 @@
 import Logo from '../../assets/img/logo.svg';
-import ChangePasswordCard from '../../Components/Card/ChangePasswordCard';
-import './ChangePassword1.css';
+import ChangePasswordCard1 from '../../Components/Card/ChangePasswordCard1';
+import styles from './ChangePassword1.module.css';
 
 const ChangePassword1 = () => {
   return (
-    <div className="change-password">
+    <div className={styles.change_password}>
       <img src={Logo} alt="logo" />
-      <ChangePasswordCard />
+      <ChangePasswordCard1 />
     </div>
   );
 };
