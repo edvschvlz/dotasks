@@ -42,22 +42,10 @@
 }
 
 .button_login {
-  background-color: var(--azul);
+  background-color: var(--verde);
 }
 
 .button_login:hover {
-  background-color: #4d79cb;
-}
-
-.button_register {
-  background-color: var(--verde);
-  display: flex;
-  text-decoration: none;
-  display: flex;
-  justify-content: center;
-}
-
-.button_register:hover {
   background-color: #85b33b;
 }
 
@@ -77,6 +65,6 @@
   margin-left: 1em;
 }
 
-.button_google:hover {
-  background-color: #a2a2a2;
+.button_close:hover {
+  background-color: #acabab;
 }
