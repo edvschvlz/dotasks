@@ -1,20 +1,9 @@
-import styles from './NewProjectModal.css';
+import styles from './TasksModal.module.css';
 
-const NewProjectModal = () => {
+const TasksModal = () => {
   return (
-    <div className='modal-card'>
-      <h5>Nome da tarefa</h5>
-      <p>Nome da Coluna</p>
-
-      <div id='desc-block'>
-        <div id='desc-title'>
-          <i class="bi bi-list"></i>
-          <p>Descrição</p>
-          <button type='button' className='edit-button'>Editar</button>
-          DEIXAR A NAVBAR FIXA
-        </div>
-      </div>
-      
+    <div className={styles.card}>
+      <p className={styles.title}>Novo Projeto</p>
       <form>
         <div className={`mb-3 container-input`}>
           <input
@@ -46,4 +35,4 @@ const NewProjectModal = () => {
   );
 };
 
-export default NewProjectModal;
+export default TasksModal;
