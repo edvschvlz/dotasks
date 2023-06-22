@@ -18,7 +18,7 @@ function Projects(){
 
             <div className='project'>
                 <div className='project-card'>PROJETO</div>
-            </div>   
+            </div>      
 
         </div>
     )
