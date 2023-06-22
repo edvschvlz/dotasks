@@ -1,14 +1,14 @@
-import Navbar from "../../Components/Navbar/Index";
-import Project from "../../Components/Projects/Index";
-import NewProjectCard from "../../Components/Modal/NewProjectModal/index";
+import Navbar from '../../Components/Navbar/Index';
+import Project from '../../Components/Projects/Index';
+import NewProjectModal from '../../Components/Modal/NewProjectModal';
 
 const Home = () => {
-    return (
-        <>
-            <Navbar />
-            <Project />
-        </>
-    )
-}
+  return (
+    <>
+      <Navbar />
+      <Project />
+    </>
+  );
+};
 
 export default Home;
