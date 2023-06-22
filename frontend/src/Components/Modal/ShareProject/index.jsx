@@ -1,5 +1,7 @@
 import styles from './ShareProject.module.css';
 
+// ESSE COMPONENTE AINDA ESTÁ EM DESENVOLVIMENTO
+
 const ShareProject = () => {
   return (
     <div className={styles.card}>
