@@ -1,12 +1,11 @@
-import Navbar from '../../Components/Navbar/Index';
-import Project from '../../Components/Projects/Index';
-import NewProjectModal from '../../Components/Modal/NewProjectModal';
+import Navbar from '../../Components/Navbar';
+import Projects from '../../Components/Projects';
 
 const Home = () => {
   return (
     <>
       <Navbar />
-      <Project />
+      <Projects />
     </>
   );
 };
