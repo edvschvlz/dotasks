@@ -1,36 +1,40 @@
 import styles from './ShareProject.module.css';
 
+// ESSE COMPONENTE AINDA ESTÁ EM DESENVOLVIMENTO
+
 const ShareProject = () => {
   return (
     <div className={styles.card}>
-      <p className={styles.title}>Novo Projeto</p>
-      <form>
-        <div className={`mb-3 container-input`}>
-          <input
-            type="text"
-            className="form-control"
-            id="floatingInput"
-            placeholder="Nome do Projeto"
-            required
-          />
-        </div>
-        <div className={`mb-3 container-input`}>
-          <textarea
-            type="text"
-            className="form-control"
-            id="descricao"
-            placeholder="Descrição"
-            rows={5}
-            required
-          ></textarea>
-        </div>
-        <button type="submit" className={styles.button_login}>
-          Salvar
-        </button>
-        <button type="button" className={styles.button_close}>
-          <i class="bi bi-x-lg"></i>
-        </button>
-      </form>
+      <p>Compartilhar “Nome Projeto”</p>
+      <div className={styles.container}>
+        <form>
+          <div className={`mb-3 container-input`}>
+            <input
+              type="email"
+              className="form-control"
+              id="floatingInput"
+              placeholder="Email do colaborador"
+              required
+            />
+            <div className={styles.container_checkbox}>
+              <div className="form-check">
+                <input
+                  className="form-check-input"
+                  type="checkbox"
+                  value=""
+                  id="flexCheckDefault"
+                />
+                <label className={styles.checkbox_label} for="flexCheckDefault">
+                  Administrador
+                </label>
+              </div>
+              <button type="submit" className={styles.button_save}>
+                Salvar alteração
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };
