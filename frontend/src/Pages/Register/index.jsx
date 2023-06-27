@@ -1,4 +1,4 @@
-import RegisterCard from '../../Components/Card/RegisterCard';
+import RegisterCard from './RegisterCard';
 import Logo from '../../assets/img/logo.svg';
 import styles from './Register.module.css';
 

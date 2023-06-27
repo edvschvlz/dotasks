@@ -1,11 +1,12 @@
-import SettingsModal from '../../Components/Modal/SettingsModal';
-import ShareProject from '../../Components/Modal/ShareProject';
+import ShareProject from '../Project/ShareProject';
+import EditorsModal from '../../Components/Navbar/EditorsModal';
+import SettingsModal from '../Home/SettingsModal';
 import styles from './PageTest.module.css';
 
 const PageTest = () => {
   return (
     <div className={styles.test}>
-      <ShareProject />
+      <SettingsModal />
     </div>
   );
 };

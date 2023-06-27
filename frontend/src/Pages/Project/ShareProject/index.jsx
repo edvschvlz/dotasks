@@ -1,11 +1,10 @@
+import { GrClose } from 'react-icons/gr';
 import styles from './ShareProject.module.css';
-
-// ESSE COMPONENTE AINDA ESTÁ EM DESENVOLVIMENTO
 
 const ShareProject = () => {
   return (
     <div className={styles.card}>
-      <p>Compartilhar “Nome Projeto”</p>
+      <p className={styles.title}>Compartilhar “Nome Projeto”</p>
       <div className={styles.container}>
         <form>
           <div className={`mb-3 container-input`}>
@@ -28,12 +27,28 @@ const ShareProject = () => {
                   Administrador
                 </label>
               </div>
-              <button type="submit" className={styles.button_save}>
-                Salvar alteração
+            </div>
+            <div>
+              <button type="submit" className={styles.button_share}>
+                Compartilhar
               </button>
+              <GrClose className={styles.close} />
             </div>
           </div>
         </form>
+      </div>
+      <div className={styles.container_names}>
+        <div>
+          <p className={styles.title}>Administradores:</p>
+          <p>Mikey Mouse, Paula Pavarotti, Irmão do Jorel, Elefante Amarelo</p>
+        </div>
+        <div>
+          <p className={styles.title}>Visualizadores:</p>
+          <p>
+            Luiz Messias, Paula Pavarotti, Pepa Pig, Astolfo, Gesorel Mestre dos Disfarces, Eliana
+            Apresentadora
+          </p>
+        </div>
       </div>
     </div>
   );
