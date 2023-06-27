@@ -1,5 +1,5 @@
 import Navbar from '../../Components/Navbar';
-import Projects from '../../Components/Projects';
+import Projects from './Projects';
 
 const Home = () => {
   return (

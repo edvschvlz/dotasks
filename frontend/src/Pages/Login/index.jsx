@@ -1,5 +1,5 @@
 import Logo from '../../assets/img/logo.svg';
-import LoginCard from '../../Components/Card/LoginCard';
+import LoginCard from './LoginCard';
 import styles from './Login.module.css';
 
 const Login = () => {
