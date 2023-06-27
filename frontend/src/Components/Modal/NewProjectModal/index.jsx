@@ -1,47 +1,60 @@
-import styles from './NewProjectModal.css';
+import styles from './NewProjectModal.module.css';
 
 const NewProjectModal = () => {
   return (
-    <div className='modal-card'>
-      <h5>Nome da tarefa</h5>
-      <p>Nome da Coluna</p>
+    <div className={styles.modalcard}>
+      <div className={styles.firstincard}>
+        <h5 className={styles.titulos}>Nome da tarefa</h5>
+        <p className={styles.titulo_second}>Nome da Coluna</p>
 
-      <div id='desc-block'>
-        <div id='desc-title'>
-          <i class="bi bi-list"></i>
-          <p>Descrição</p>
-          <button type='button' className='edit-button'>Editar</button>
-          DEIXAR A NAVBAR FIXA
+        <div className={styles.descblock}>
+          <div className={styles.desctitle}>
+            <i class="bi bi-list"></i>
+            <p className={styles.descricaotitle}>Descrição</p>
+            <button type="button" className={styles.editbutton}>
+              Editar
+            </button>
+          </div>
+          <p className={styles.descricao}>Oi! Aqui está uma descrição bem bonita S2</p>
         </div>
+
+        <div className={styles.ativblock}>
+          <p className={styles.descricaotitle}>Atividades</p>
+          <div className={styles.listblock}>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="flexCheckDefault"
+              ></input>
+              <label class="form-check-label" for="flexCheckDefault">
+                Pesquisar grupos de atividades que façam adoleta vendados
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <form className={styles.form_item}>
+          <div className={`mb-3 container-input`}>
+            <input
+              type="text"
+              className="form-control"
+              id="floatingInput"
+              placeholder="Nome do Projeto"
+              required
+            />
+          </div>
+          <div className={styles.buttons_lc}>
+            <button type="submit" className={styles.button_login}>
+              Salvar
+            </button>
+            <button type="button" className={styles.button_close}>
+              <i class="bi bi-x-lg"></i>
+            </button>
+          </div>
+        </form>
       </div>
-      
-      <form>
-        <div className={`mb-3 container-input`}>
-          <input
-            type="text"
-            className="form-control"
-            id="floatingInput"
-            placeholder="Nome do Projeto"
-            required
-          />
-        </div>
-        <div className={`mb-3 container-input`}>
-          <textarea
-            type="text"
-            className="form-control"
-            id="descricao"
-            placeholder="Descrição"
-            rows={5}
-            required
-          ></textarea>
-        </div>
-        <button type="submit" className={styles.button_login}>
-          Salvar
-        </button>
-        <button type="button" className={styles.button_close}>
-          <i class="bi bi-x-lg"></i>
-        </button>
-      </form>
     </div>
   );
 };

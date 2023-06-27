@@ -1,4 +1,4 @@
-.modal-card {
+.modalcard {
   border-radius: 10px;
   width: 700px;
   background-color: var(--branco);
@@ -12,17 +12,26 @@
   }
 }
 
-#desc-block{
-  display: flex;
-  flex-direction: column;
+.titulos{
+  margin: 0!;
 }
 
-#desc-title{
+.titulo_second{
+  font-weight: 300;
+}
+
+.descblock{
+  display: flex;
+  flex-direction: column;
+  margin: 4% 0% 8% 0%;
+}
+
+.desctitle{
   display: flex;
   flex-direction: row;
 }
 
-.edit-button{
+.editbutton{
     border: none;
     color: white;
     width: 11%;
@@ -32,7 +41,7 @@
     font-size: 0.8em;
     border-radius: 0.3em;
     transition: all 0.1s ease-in-out;
-    margin-left: 2em;
+    margin-left: 1rem;
     background-color: #a5a5a5;
 }
 
@@ -43,6 +52,19 @@
   }
 }
 
+.descricaotitle {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  margin-left: 1rem;
+  font-weight: 500
+}
+
+.descricao {
+  margin-left: 5%;
+  font-size: 0.8em;
+}
+
+
 .link {
   font-size: 0.8em;
   text-decoration: none;
@@ -50,18 +72,34 @@
   padding: 1.25em;
 }
 
+.ativblock{
+
+}
+
+.listblock{
+
+}
+
+.firstincard{
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+}
+
 .button_login,
 .button_register {
   border: none;
   color: white;
-  width: 35%;
+  display: flex;
+  height: 0 !important;
   text-transform: uppercase;
   font-weight: 500;
   font-size: 0.9em;
-  padding: 0.5em 0;
+  padding: 1.2em 1.5em 1.2em 1.5em;
   border-radius: 0.3em;
   transition: all 0.1s ease-in-out;
-  margin-left: 4em;
+  justify-content: center;
+  align-items: center;
 }
 
 .button_login {
@@ -89,11 +127,9 @@
   background-color: var(--cinza-medio);
   border: none;
   color: white;
-  width: 15%;
   font-size: 0.9em;
-  padding: 0.5em 0.95em 0.5em 0em;
+  padding: 0.4em 0.9em;
   border-radius: 0.3em;
-  margin-top: 0.6em;
   font-weight: 500;
   transition: all 0.1s ease-in-out;
   text-align: end;
@@ -102,4 +138,18 @@
 
 .button_google:hover {
   background-color: #a2a2a2;
+}
+
+.form_item{
+  display: flex;
+  flex-direction: column;
+  margin: 3em 0em 1em 0em;
+  background: #e7e7e7;
+  padding: 1em;
+  border-radius: 0.7em;
+}
+
+.buttons_lc{
+  display: flex;
+  flex-direction: row;
 }
