@@ -4,7 +4,8 @@ import Projects from './Projects';
 const Home = () => {
   return (
     <>
-      <NewProjectModal />
+      <Navbar />
+      <Projects />
     </>
   );
 };
