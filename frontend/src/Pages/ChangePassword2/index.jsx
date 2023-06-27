@@ -1,5 +1,5 @@
 import Logo from '../../assets/img/logo.svg';
-import ChangePasswordCard2 from '../../Components/Card/ChangePasswordCard2';
+import ChangePasswordCard2 from './ChangePasswordCard2';
 import styles from './ChangePassword2.module.css';
 
 const ChangePassword2 = () => {

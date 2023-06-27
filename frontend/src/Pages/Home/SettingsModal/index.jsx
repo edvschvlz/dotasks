@@ -3,7 +3,7 @@ import styles from './SettingsModal.module.css';
 const SettingsModal = () => {
   return (
     <div className={styles.modal}>
-      <p>Configurar minha conta</p>
+      <p className={styles.title}>Configurar minha conta</p>
       <div className={styles.avatar}></div>
       <a href="#" className={styles.link}>
         Alterar foto de perfil

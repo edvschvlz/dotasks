@@ -13,10 +13,14 @@
   }
 }
 
+.title {
+  margin-bottom: 1em;
+}
+
 .container {
   background-color: var(--cinza);
   border-radius: 3px;
-  padding: 1em;
+  padding: 1em 1em 0;
   width: 100%;
 }
 
@@ -43,44 +47,38 @@
   padding: 1.25em;
 }
 
-.button_login,
-.button_register {
+.button_share {
+  background-color: var(--verde);
   border: none;
   color: white;
   width: 35%;
-  text-transform: uppercase;
   font-weight: 500;
   font-size: 0.9em;
-  padding: 0.5em 0;
+  padding: 0.5em;
   border-radius: 0.3em;
   transition: all 0.1s ease-in-out;
-  margin-left: 4em;
+  margin: 1em 0 0;
 }
 
-.button_login {
-  background-color: var(--verde);
-}
-
-.button_login:hover {
+.button_share:hover {
   background-color: #85b33b;
 }
 
-.button_close {
-  background-position: 0.5em;
-  background-color: var(--cinza-medio);
-  border: none;
-  color: white;
-  width: 15%;
-  font-size: 0.9em;
-  padding: 0.5em 0.95em 0.5em 0em;
-  border-radius: 0.3em;
-  margin-top: 0.6em;
-  font-weight: 500;
-  transition: all 0.1s ease-in-out;
-  text-align: end;
-  margin-left: 1em;
+.close {
+  color: black;
+  font-size: 2em;
+  cursor: pointer;
+  margin-left: 0.3em;
 }
 
-.button_close:hover {
-  background-color: #acabab;
+.container_names {
+  font-size: 0.9em;
+  & .title {
+    font-weight: 500;
+    margin: 1em 0 0;
+  }
+}
+
+p {
+  margin-bottom: 0;
 }
