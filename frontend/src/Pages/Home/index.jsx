@@ -1,5 +1,5 @@
-
-import NewProjectModal from '../../Pages/Home/NewProjectModal/index';
+import Navbar from '../../Components/Navbar';
+import Projects from './Projects';
 
 const Home = () => {
   return (

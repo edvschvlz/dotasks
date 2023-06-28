@@ -1,6 +1,6 @@
 import { GrClose } from 'react-icons/gr';
-import styles from './EditorsModal.module.css';
 import { FaUserCircle } from 'react-icons/fa';
+import styles from './EditorsModal.module.css';
 
 const EditorsModal = () => {
   return (
