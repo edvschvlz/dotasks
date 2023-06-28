@@ -3,7 +3,7 @@ import styles from './ChangePasswordCard2.module.css';
 const ChangePasswordCard2 = () => {
   return (
     <div className={styles.card}>
-      <p>Redefinir senha</p>
+      <p className={styles.title}>Redefinir senha</p>
       <p className={styles.text}>Digite a nova senha</p>
       <form>
         <div className={`mb-3 container-input`}>

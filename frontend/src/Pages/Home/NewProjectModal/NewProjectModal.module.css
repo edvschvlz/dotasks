@@ -1,48 +1,57 @@
 .modalcard {
+<<<<<<< Updated upstream
   border-radius: 10px;
   width: 800px;
+=======
+>>>>>>> Stashed changes
   background-color: var(--branco);
   border: none;
+  border-radius: 10px;
   box-shadow: 5px 5px 5px -3px rgba(0, 0, 0, 0.1);
-  padding: 1.8em;
   display: flex;
+<<<<<<< Updated upstream
   flex-direction: row-reverse;
+=======
+  flex-direction: column;
+  padding: 1.8em;
+  width: 700px;
+>>>>>>> Stashed changes
   & form {
     width: 100%;
   }
 }
 
-.titulos{
+.titulos {
   margin: 0!;
 }
 
-.titulo_second{
+.titulo_second {
   font-weight: 300;
 }
 
-.descblock{
+.descblock {
   display: flex;
   flex-direction: column;
   margin: 4% 0% 8% 0%;
 }
 
-.desctitle{
+.desctitle {
   display: flex;
   flex-direction: row;
 }
 
-.editbutton{
-    border: none;
-    color: white;
-    width: 11%;
-    height: 2em;
-    text-transform: uppercase;
-    font-weight: 500;
-    font-size: 0.8em;
-    border-radius: 0.3em;
-    transition: all 0.1s ease-in-out;
-    margin-left: 1rem;
-    background-color: #a5a5a5;
+.editbutton {
+  border: none;
+  color: white;
+  width: 11%;
+  height: 2em;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 0.8em;
+  border-radius: 0.3em;
+  transition: all 0.1s ease-in-out;
+  margin-left: 1rem;
+  background-color: #a5a5a5;
 }
 
 .container-input {
@@ -56,14 +65,13 @@
   margin-top: 0;
   margin-bottom: 1rem;
   margin-left: 1rem;
-  font-weight: 500
+  font-weight: 500;
 }
 
 .descricao {
   margin-left: 5%;
   font-size: 0.8em;
 }
-
 
 .link {
   font-size: 0.8em;
@@ -72,7 +80,17 @@
   padding: 1.25em;
 }
 
+<<<<<<< Updated upstream
 .first_card{
+=======
+.ativblock {
+}
+
+.listblock {
+}
+
+.firstincard {
+>>>>>>> Stashed changes
   display: flex;
   flex-direction: column;
   width: 80%;
@@ -133,7 +151,7 @@
   background-color: var(--cinza-medio);
 }
 
-.form_item{
+.form_item {
   display: flex;
   flex-direction: column;
   margin: 3em 0em 0em 0em;
@@ -142,6 +160,7 @@
   border-radius: 0.7em;
 }
 
+<<<<<<< Updated upstream
 .form_item:hover{
   background: var(--cinza);
 }
@@ -251,3 +270,9 @@
   height: 2em;
   justify-content: center;
 }
+=======
+.buttons_lc {
+  display: flex;
+  flex-direction: row;
+}
+>>>>>>> Stashed changes

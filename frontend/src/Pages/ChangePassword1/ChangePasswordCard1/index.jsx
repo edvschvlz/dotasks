@@ -4,7 +4,7 @@ import styles from './ChangePasswordCard1.module.css';
 const ChangePasswordCard1 = () => {
   return (
     <div className={styles.card}>
-      <p>Redefinir senha</p>
+      <p className={styles.title}>Redefinir senha</p>
       <p className={styles.text}>Insira o email abaixo para iniciarmos a alteração da sua senha.</p>
       <form>
         <div className={`mb-3 container-input`}>

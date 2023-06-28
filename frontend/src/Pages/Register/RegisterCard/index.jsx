@@ -4,7 +4,7 @@ import styles from './RegisterCard.module.css';
 const RegisterCard = () => {
   return (
     <div className={styles.card}>
-      <p>Nova Conta</p>
+      <p className={styles.title}>Nova Conta</p>
       <form>
         <div className={`mb-3 container-input`}>
           <input
