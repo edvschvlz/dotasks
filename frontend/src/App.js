@@ -6,6 +6,7 @@ import ChangePassword1 from './Pages/ChangePassword1';
 import ChangePassword2 from './Pages/ChangePassword2';
 import PageTest from './Pages/PageTest';
 import Project from './Pages/Project';
+import NewProjectModal from './Pages/Home/NewProjectModal'
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/project" element={<Project />} />
         <Route path="/page-test" element={<PageTest />} />
+        <Route path="/newproject" element={<NewProjectModal />} />
       </Routes>
     </BrowserRouter>
   );

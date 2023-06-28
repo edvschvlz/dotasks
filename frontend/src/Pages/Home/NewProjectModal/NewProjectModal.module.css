@@ -1,23 +1,15 @@
 .modalcard {
-<<<<<<< Updated upstream
   border-radius: 10px;
   width: 800px;
-=======
->>>>>>> Stashed changes
   background-color: var(--branco);
   border: none;
   border-radius: 10px;
   box-shadow: 5px 5px 5px -3px rgba(0, 0, 0, 0.1);
   display: flex;
-<<<<<<< Updated upstream
   flex-direction: row-reverse;
-=======
-  flex-direction: column;
   padding: 1.8em;
-  width: 700px;
->>>>>>> Stashed changes
   & form {
-    width: 100%;
+    width: 100%;  
   }
 }
 
@@ -80,17 +72,7 @@
   padding: 1.25em;
 }
 
-<<<<<<< Updated upstream
 .first_card{
-=======
-.ativblock {
-}
-
-.listblock {
-}
-
-.firstincard {
->>>>>>> Stashed changes
   display: flex;
   flex-direction: column;
   width: 80%;
@@ -160,7 +142,6 @@
   border-radius: 0.7em;
 }
 
-<<<<<<< Updated upstream
 .form_item:hover{
   background: var(--cinza);
 }
@@ -270,9 +251,17 @@
   height: 2em;
   justify-content: center;
 }
-=======
-.buttons_lc {
+
+.listblock{
   display: flex;
-  flex-direction: row;
+  padding: .5em;
+  flex-direction: row
 }
->>>>>>> Stashed changes
+
+.listblock:hover{
+  display: block;
+  background-color: var(--cinza);
+  border-radius: 0.3em;
+}
+
+
