@@ -1,12 +1,12 @@
 .modalcard {
   border-radius: 10px;
-  width: 700px;
+  width: 800px;
   background-color: var(--branco);
   border: none;
   box-shadow: 5px 5px 5px -3px rgba(0, 0, 0, 0.1);
   padding: 1.8em;
   display: flex;
-  flex-direction: column;
+  flex-direction: row-reverse;
   & form {
     width: 100%;
   }
@@ -72,18 +72,11 @@
   padding: 1.25em;
 }
 
-.ativblock{
-
-}
-
-.listblock{
-
-}
-
-.firstincard{
+.first_card{
   display: flex;
   flex-direction: column;
   width: 80%;
+  padding-right: 2%;
 }
 
 .button_login,
@@ -137,19 +130,124 @@
 }
 
 .button_google:hover {
-  background-color: #a2a2a2;
+  background-color: var(--cinza-medio);
 }
 
 .form_item{
   display: flex;
   flex-direction: column;
-  margin: 3em 0em 1em 0em;
-  background: #e7e7e7;
+  margin: 3em 0em 0em 0em;
+  background: var(--cinza);
   padding: 1em;
   border-radius: 0.7em;
+}
+
+.form_item:hover{
+  background: var(--cinza);
 }
 
 .buttons_lc{
   display: flex;
   flex-direction: row;
+}
+
+.bi::before, [class^="bi-"]::before, [class*=" bi-"]::before {
+  line-height: none !important; 
+}
+
+.buttons_card{
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+  align-items: flex-end;
+}
+
+.button_exclude{
+  background-color: var(--vermelho);
+    height: 2em;
+    width: 100%;
+    display: flex;
+    border: none;
+    color: white;
+    font-size: 0.8em;
+    border-radius: 0.3em;
+    font-weight: 500;
+    transition: all 0.1s ease-in-out;
+    text-align: end;
+    margin-bottom: 2em;
+    text-transform: uppercase;
+    align-items: center;
+    justify-content: center;
+}
+
+.button_exit{
+    background-color: var(--cinza-medio);;
+    height: 2em;
+    width: 100%;
+    display: flex;
+    border: none;
+    color: white;
+    font-size: 0.8em;
+    border-radius: 0.3em;
+    font-weight: 500;
+    transition: all 0.1s ease-in-out;
+    text-align: end;
+    margin-bottom: 2em;
+    text-transform: uppercase;
+    align-items: center;
+    justify-content: center;
+}
+
+.button_editors{
+  background-color: var(--cinza-medio);;
+  height: 2em;
+  width: 100%;
+  display: flex;
+  border: none;
+  color: white;
+  font-size: 0.8em;
+  border-radius: 0.3em;
+  font-weight: 500;
+  transition: all 0.1s ease-in-out;
+  text-align: end;
+  margin-bottom: 2em;
+  text-transform: uppercase;
+  align-items: center;
+  justify-content: center;
+}
+
+.button_date{
+  background-color: var(--cinza-medio);
+  width: 100%;
+  display: flex;
+  border: none;
+  color: white;
+  font-size: 0.8em;
+  border-radius: 0.3em;
+  font-weight: 500;
+  text-align: end;
+  text-transform: uppercase;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 7% 7%;
+}
+
+.date{
+  margin: 10% 0%;
+}
+
+.button_date_define{
+  background-color: white;
+  width: 50%;
+  display: flex;
+  border: none;
+  color: black;
+  font-size: 0.8em;
+  border-radius: 0.3em;
+  font-weight: 600;
+  text-transform: uppercase;
+  flex-direction: column;
+  align-items: center;
+  height: 2em;
+  justify-content: center;
 }
