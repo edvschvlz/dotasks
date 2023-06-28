@@ -3,7 +3,20 @@ import styles from './NewProjectModal.module.css';
 const NewProjectModal = () => {
   return (
     <div className={styles.modalcard}>
-      <div className={styles.firstincard}>
+
+      <div className={styles.buttons_card}>
+        <button type="button" className={styles.button_exclude}>Excluir</button>
+        <button type="button" className={styles.button_exit}>Sair</button>
+        <button type="button" className={styles.button_editors}>Editores</button>
+
+        <div className={styles.button_date}>
+          <p>Prazo :</p>
+          <input className={styles.date} type="date"/>
+          <button type="button" className={styles.button_date_define}>Definir</button>
+        </div>
+      </div>
+
+      <div className={styles.first_card}>
         <h5 className={styles.titulos}>Nome da tarefa</h5>
         <p className={styles.titulo_second}>Nome da Coluna</p>
 
@@ -47,7 +60,7 @@ const NewProjectModal = () => {
           </div>
           <div className={styles.buttons_lc}>
             <button type="submit" className={styles.button_login}>
-              Salvar
+              Incluir Atividade
             </button>
             <button type="button" className={styles.button_close}>
               <i class="bi bi-x-lg"></i>
@@ -55,6 +68,7 @@ const NewProjectModal = () => {
           </div>
         </form>
       </div>
+      
     </div>
   );
 };
