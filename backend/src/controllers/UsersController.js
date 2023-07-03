@@ -6,12 +6,16 @@ export const getAll = async (request, response) => {
   return response.status(200).send(users);
 };
 
-// export const register = async (request, response) => {
-//   const { email, name, password } = request.body;
+export const register = async (request, response) => {
+  try {
+    const { email, name, password } = request.body;
 
-//   const user = await UsersModel.save(email, name, password);
+    const user = await UsersModel.save(email, name, password);
 
-//   delete user.password;
+    delete user.password;
 
-//   return response.status(201).send(user);
-// };
+    return response.status(201).send(user);
+  } catch (err) {
+    return response.status(400).send(err.message);
+  }
+};

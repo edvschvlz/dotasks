@@ -17,8 +17,7 @@
     "dotenv": "^16.1.4",
     "express": "^4.18.2",
     "mysql": "^2.18.1",
-    "typeorm": "^0.3.16",
-    "uuid": "^9.0.0"
+    "typeorm": "^0.3.16"
   },
   "devDependencies": {
     "nodemon": "^2.0.22"

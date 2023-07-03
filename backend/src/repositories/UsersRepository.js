@@ -1,5 +1,6 @@
 import dataSource from '../database/Connect.js';
 import { UserEntity } from '../entities/User.entity.js';
+import * as bcrypt from 'bcrypt';
 
 let usersRepository = dataSource.getRepository(UserEntity);
 
@@ -9,27 +10,18 @@ const getAll = async () => {
   return users;
 };
 
-// const save = async (email, name, password) => {
-//   const id = uuid();
+const save = async (email, name, password) => {
+  const user = await usersRepository.save({
+    email: email,
+    name: name,
+    password: await hashPassword(password),
+  });
 
-//   function save() {
-//     return new Promise((resolve, reject) => {
-//       connection.query(
-//         'INSERT INTO users (id, email, name, password) VALUES (?,?,?,?)',
-//         [id, email, name, password],
-//         (err, rows) => {
-//           if (err) reject(err);
-//           resolve(rows);
-//         },
-//       );
-//     });
-//   }
+  return user;
+};
 
-//   const user = await save();
+const hashPassword = async (password) => {
+  return await bcrypt.hash(password, 10);
+};
 
-//   connection.end();
-
-//   return JSON.parse(JSON.stringify(user));
-// };
-
-export const UsersModel = { getAll };
+export const UsersModel = { getAll, save };
