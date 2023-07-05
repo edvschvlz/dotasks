@@ -21,6 +21,11 @@
   width: 100%;
 }
 
+.error {
+  font-size: 0.7em;
+  color: var(--vermelho);
+}
+
 .link {
   color: black;
   font-size: 0.8em;
@@ -79,4 +84,9 @@
 
 .button_google:hover {
   background-color: #a2a2a2;
+}
+
+.button_login img {
+  height: 20px;
+  max-width: 20px;
 }

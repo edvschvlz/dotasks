@@ -5,7 +5,7 @@ import styles from './Login.module.css';
 const Login = () => {
   return (
     <div className={styles.login}>
-      <img src={Logo} alt="logo" />
+      <img src={Logo} alt="logo" className={styles.image} />
       <LoginCard />
     </div>
   );
