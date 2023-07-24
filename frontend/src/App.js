@@ -6,7 +6,8 @@ import ChangePassword1 from './Pages/ChangePassword1';
 import ChangePassword2 from './Pages/ChangePassword2';
 import PageTest from './Pages/PageTest';
 import Project from './Pages/Project';
-import NewProjectModal from './Pages/Home/NewProjectModal'
+import NewProjectModal from './Pages/Home/NewProjectModal';
+import TasksModal from './Pages/Home/TasksModal';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/project" element={<Project />} />
         <Route path="/page-test" element={<PageTest />} />
         <Route path="/newproject" element={<NewProjectModal />} />
+        <Route path="/newtask" element={<TasksModal />} />
       </Routes>
     </BrowserRouter>
   );
