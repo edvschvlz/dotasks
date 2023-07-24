@@ -24,4 +24,4 @@ const hashPassword = async (password) => {
   return await bcrypt.hash(password, 10);
 };
 
-export const UsersModel = { getAll, save };
+export const UsersRepository = { getAll, save };
