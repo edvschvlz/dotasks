@@ -24,11 +24,8 @@ const NewProjectModal = () => {
             required
           ></textarea>
         </div>
-        <button type="submit" className={styles.button_login}>
+        <button type="submit" className={styles.button_save}>
           Salvar
-        </button>
-        <button type="button" className={styles.button_close}>
-          <i class="bi bi-x-lg"></i>
         </button>
       </form>
     </div>

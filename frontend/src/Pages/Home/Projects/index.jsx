@@ -2,11 +2,12 @@ import { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import styles from './Projects.module.css';
 import Modal from '../../../Components/Modal';
+import NewProjectModal from '../NewProjectModal';
 
 function Projects() {
   const [projects, setProjects] = useState([]);
   const [projectsCard, setProjectsCard] = useState([]);
-  const [dropdown, setDropdown] = useState('');
+  const [showModal, setShowModal] = useState(false);
   const text = useRef('');
 
   useEffect(() => {
@@ -37,14 +38,18 @@ function Projects() {
     return setProjectsCard(projects);
   };
 
-  const newProject = () => {};
+  const newProject = () => {
+    setShowModal(true);
+  };
 
   return (
     <div className={styles.home}>
       <div className={styles.container}>
         <div className={styles.text_home}>Seus Projetos</div>
         <div className={styles.search_button}>
-          <Modal></Modal>
+          <Modal show={showModal} setShowModal={setShowModal}>
+            <NewProjectModal />
+          </Modal>
 
           <button className={styles.btn_newhome} onClick={newProject}>
             Novo Projeto
