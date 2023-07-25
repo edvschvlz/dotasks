@@ -1,0 +1,67 @@
+.nav {
+  display: flex;
+  max-height: 8vh;
+  height: 8vh;
+  width: 100%;
+  background-color: rgb(255 255 255);
+  box-shadow: 0px 5px 5px #ebebeb;
+  padding: 0.5em;
+}
+
+.logo_container {
+  width: 100%;
+  height: 100%;
+  & img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+}
+
+.user_bell_container {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  width: 100%;
+  gap: 1em;
+}
+
+.button_ch {
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+  & button {
+    color: #5686e1;
+    font-weight: bold;
+    background: #ffffff;
+    border-width: thin;
+    border-color: #5686e1;
+    border-radius: 0.2em;
+    padding: 0.4em;
+  }
+  & button:hover {
+    color: #ffffff;
+    background: #5686e1;
+  }
+}
+
+.user_bell_container {
+  padding-right: 1%;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  & i {
+    cursor: pointer;
+  }
+}
+
+.user_container {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  & img {
+    border-radius: 5px;
+    height: 45px;
+    width: 45px;
+  }
+}

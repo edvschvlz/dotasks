@@ -1,0 +1,19 @@
+import Column from './Column';
+import Navbar from '../../Components/Navbar';
+import styles from './Project.module.css';
+
+const Project = () => {
+  return (
+    <>
+      <Navbar />
+      <div className={styles.container}>
+        <Column />
+        <div className={styles.add_column}>
+          <span>+ NOVA COLUNA</span>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default Project;

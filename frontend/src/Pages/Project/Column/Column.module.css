@@ -1,0 +1,102 @@
+.column {
+  display: flex;
+  max-height: 85%;
+  height: 100%;
+  align-self: auto;
+  padding: 1em;
+  border-radius: 10px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  gap: 0.5em;
+  background-color: var(--branco);
+  min-width: 25%;
+  flex-direction: column;
+  & h1 {
+    font-size: 1.5em;
+  }
+}
+
+.tasks {
+  display: flex;
+  width: 100%;
+  gap: 1em;
+  max-height: 100%;
+  height: auto;
+  flex-direction: column;
+}
+
+.create {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 0.5em;
+  & input {
+    height: 5vh;
+    font-size: 1em;
+    max-width: 100%;
+  }
+}
+
+.create .buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1em;
+  & button {
+    border: none;
+    color: white;
+    width: 50%;
+    background-color: var(--azul);
+    font-weight: 500;
+    font-size: 0.9em;
+    padding: 0.5em 0;
+    border-radius: 0.3em;
+  }
+  & .close {
+    color: black;
+    font-size: 2em;
+    cursor: pointer;
+  }
+}
+
+.create .title_importance {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-right: 1em;
+  & input {
+    max-width: 85%;
+  }
+}
+
+.add_task {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 5vh;
+  cursor: pointer;
+  border: 2px dashed black;
+  border-radius: 5px;
+  & span {
+    font-size: 1em;
+  }
+}
+
+.importance {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.green {
+  background-color: var(--verde);
+}
+.yellow {
+  background-color: var(--amarelo);
+}
+.red {
+  background-color: var(--vermelho);
+}

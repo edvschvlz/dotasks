@@ -1,0 +1,27 @@
+body {
+  background-color: var(--cinza);
+  overflow-x: scroll;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  gap: 2em;
+  height: 100%;
+  margin: 2em 0 0 2em;
+  max-width: 100%;
+}
+
+.add_column {
+  align-items: center;
+  border: 2px dashed black;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  height: 10vh;
+  justify-content: center;
+  min-width: 25%;
+  & span {
+    font-size: 1em;
+  }
+}

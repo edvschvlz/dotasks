@@ -1,24 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Home from './Pages/Home';
+import Login from './Pages/Login';
+import Register from './Pages/Register';
+import ChangePassword1 from './Pages/ChangePassword1';
+import ChangePassword2 from './Pages/ChangePassword2';
+import PageTest from './Pages/PageTest';
+import Project from './Pages/Project';
+import NewProjectModal from './Pages/Home/NewProjectModal';
+import TasksModal from './Pages/Home/TasksModal';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route index element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/change-password-1" element={<ChangePassword1 />} />
+        <Route path="/change-password-2" element={<ChangePassword2 />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/project" element={<Project />} />
+        <Route path="/page-test" element={<PageTest />} />
+        <Route path="/newproject" element={<NewProjectModal />} />
+        <Route path="/newtask" element={<TasksModal />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
