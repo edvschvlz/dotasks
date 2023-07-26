@@ -2,7 +2,7 @@ import { Router } from 'express';
 
 import UsersRouter from './routes/UsersRouter.js';
 import ProjectsRouter from './routes/ProjectsRouter.js';
-import TasksRouter from './routes/TasksRouter';
+import TasksRouter from './routes/TasksRouter.js';
 
 const routes = Router();
 
