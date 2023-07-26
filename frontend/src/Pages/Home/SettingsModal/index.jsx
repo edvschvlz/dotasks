@@ -4,11 +4,11 @@ const SettingsModal = () => {
   return (
     <div className={styles.modal}>
       <p className={styles.title}>Configurar minha conta</p>
-      <div className={styles.avatar}></div>
-      <a href="#" className={styles.link}>
-        Alterar foto de perfil
-      </a>
       <form>
+        <div className={styles.avatar}></div>
+        <a href="#" className={styles.link}>
+          Alterar foto de perfil
+        </a>
         <div className={`mb-3 container-input`}>
           <input
             type="text"
@@ -48,9 +48,6 @@ const SettingsModal = () => {
         <div className={styles.buttons}>
           <button type="submit" className={styles.button_save}>
             Salvar alteração
-          </button>
-          <button type="submit" className={styles.button_cancel}>
-            Cancelar
           </button>
         </div>
       </form>
