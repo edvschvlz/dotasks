@@ -1,4 +1,4 @@
-import { TasksRepository } from '../repositories/TasksRepository';
+import { TasksRepository } from '../repositories/TasksRepository.js';
 
 export const getAll = async (request, response) => {
   try {
@@ -12,7 +12,7 @@ export const getAll = async (request, response) => {
 
 export const save = async (request, response) => {
   try {
-    const { name, description, deadline, importance, columns_id} = request.body;
+    const { name, description, deadline, importance, columns_id } = request.body;
 
     const task = await TasksRepository.save(name, description, deadline, importance, columns_id);
 

@@ -14,11 +14,12 @@ export const ActivityEntity = new EntitySchema({
       length: 255,
     },
     completed: {
-      type: 'datetime',
+      type: 'int',
+      default: 0,
     },
     task_id: {
-      type: 'bit',
-      default: 0,
+      primary: true,
+      type: 'int',
     },
   },
 });

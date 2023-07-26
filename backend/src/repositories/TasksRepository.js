@@ -1,5 +1,5 @@
 import dataSource from '../database/Connect.js';
-import { TaskEntity } from '../entities/Task.entity';
+import { TaskEntity } from '../entities/Task.entity.js';
 
 let tasksRepository = dataSource.getRepository(TaskEntity);
 
@@ -15,7 +15,7 @@ const save = async (name, description) => {
     description: description,
     deadline: deadline,
     importance: importance,
-    columns_id:columns_id,
+    columns_id: columns_id,
   });
 
   return task;
