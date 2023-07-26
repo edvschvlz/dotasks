@@ -1,10 +1,20 @@
-import { TasksRepository } from '../repositories/TasksRepository';
+import { TasksRepository } from '../repositories/TasksRepository.js';
 
 export const getAll = async (request, response) => {
   try {
     const tasks = await TasksRepository.getAll();
 
     return response.status(200).send(tasks);
+  } catch (err) {
+    return response.status(400).send(err.message);
+  }
+};
+
+export const getById = async (request, response) => {
+  try {
+    const task = await TasksRepository.getById(request.body.id);
+
+    return response.status(200).send(task);
   } catch (err) {
     return response.status(400).send(err.message);
   }
