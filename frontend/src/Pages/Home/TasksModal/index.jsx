@@ -1,6 +1,28 @@
+import { useEffect, useRef, useState } from 'react';
+import axios from 'axios';
 import styles from './TasksModal.module.css';
 
 const TasksModal = () => {
+  const [tasks, setTasks] = useState([]);
+  const [tasksCard, setTasksCard] = useState([]);
+  const [dropdown, setDropdown] = useState('');
+  const text = useRef('');
+
+  useEffect(() => {
+    axios({
+      method: 'get',
+      url: 'http://localhost:5000/tasks',
+      responseType: 'json',
+    })
+      .then((response) => {
+        const tasks = response.data;
+        
+        setTasks(tasks);
+        setTasksCard(tasks);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
   return (
     <div className={styles.modalcard}>
       <div className={styles.buttons_card}>
@@ -17,9 +39,6 @@ const TasksModal = () => {
         <div className={styles.button_date}>
           <p>Prazo :</p>
           <input className={styles.date} type="date" />
-          <button type="button" className={styles.button_date_define}>
-            Definir
-          </button>
         </div>
       </div>
 
@@ -61,7 +80,7 @@ const TasksModal = () => {
               type="text"
               className="form-control"
               id="floatingInput"
-              placeholder="Nome do Projeto"
+              placeholder="Nome da Atividade"
               required
             />
           </div>
