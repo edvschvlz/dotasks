@@ -17,8 +17,13 @@ const save = async (name, description) => {
     importance: importance,
     columns_id: columns_id,
   });
+  return task;
+};
+
+const getById = async (id) => {
+  const task = await tasksRepository.findBy({id:id});
 
   return task;
 };
 
-export const TasksRepository = { getAll, save };
+export const TasksRepository = { getAll, save, getById };
