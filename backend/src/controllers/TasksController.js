@@ -22,7 +22,7 @@ export const getById = async (request, response) => {
 
 export const save = async (request, response) => {
   try {
-    const { name, description, deadline, importance, columns_id} = request.body;
+    const { name, description, deadline, importance, columns_id } = request.body;
 
     const task = await TasksRepository.save(name, description, deadline, importance, columns_id);
 

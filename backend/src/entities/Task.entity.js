@@ -21,8 +21,8 @@ export const TaskEntity = new EntitySchema({
     },
     importance: {
       type: 'enum',
-      enum: ["RED", "YELLOW", "GREEN"],
-      default: "GREEN",
+      enum: ['RED', 'YELLOW', 'GREEN'],
+      default: 'GREEN',
     },
     columns_id: {
       primary: true,
