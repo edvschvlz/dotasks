@@ -13,6 +13,7 @@ const save = async (name, description) => {
   const project = await projectsRepository.save({
     name: name,
     description: description,
+    deadline: deadline,
   });
 
   return project;
