@@ -38,11 +38,15 @@ const LoginCard = () => {
       setEmailError(true);
       event.preventDefault();
       return;
+    } else {
+      setEmailError(false);
     }
     if (!validateFields(fields.password)) {
       setPasswordError(true);
       event.preventDefault();
       return;
+    } else {
+      setPasswordError(false);
     }
 
     event.preventDefault();
