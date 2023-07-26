@@ -1,5 +1,5 @@
 import Column from './Column';
-import Navbar from '../../Components/Navbar';
+import Navbar from '../../Components/Navbar/Index';
 import styles from './Project.module.css';
 
 const Project = () => {
