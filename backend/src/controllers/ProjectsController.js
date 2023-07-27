@@ -21,3 +21,15 @@ export const save = async (request, response) => {
     return response.status(400).send(err.message);
   }
 };
+
+export const findOneBy = async (request, response) => {
+  try {
+    const { id } = request.params;
+
+    const project = await ProjectsRepository.findOneBy(id);
+
+    return response.status(200).send(project);
+  } catch (err) {
+    return response.status(400).send(err.message);
+  }
+};
