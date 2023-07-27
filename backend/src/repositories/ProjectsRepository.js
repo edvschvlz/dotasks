@@ -19,4 +19,10 @@ const save = async (name, description) => {
   return project;
 };
 
-export const ProjectsRepository = { getAll, save };
+const findOneBy = async (id) => {
+  const project = await projectsRepository.findOneBy({ id: id });
+
+  return project;
+};
+
+export const ProjectsRepository = { getAll, save, findOneBy };
