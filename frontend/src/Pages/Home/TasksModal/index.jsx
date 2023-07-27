@@ -1,62 +1,83 @@
 import { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import styles from './TasksModal.module.css';
+import Modal from '../../../Components/Modal';
+import EditDescriptionTask from './InsideModals/EditDescriptionTask';
+import ViewEditors from './InsideModals/ViewEditors';
+import ExcludeTask from './InsideModals/ExcludeTask';
 
 const TasksModal = () => {
-  const [tasks, setTasks] = useState([]);
-  const [tasksCard, setTasksCard] = useState([]);
-  const [dropdown, setDropdown] = useState('');
+  const [showModal, setShowModal] = useState(false)
+  const [task, setTask] = useState({});
   const text = useRef('');
 
   useEffect(() => {
     axios({
       method: 'get',
-      url: 'http://localhost:5000/tasks',
+      url: `http://localhost:5000/tasks/1`,
       responseType: 'json',
     })
       .then((response) => {
-        const tasks = response.data;
-        
-        setTasks(tasks);
-        setTasksCard(tasks);
+        const taskdata = response.data[0];
+
+        setTask(taskdata);
       })
       .catch((err) => console.log(err));
   }, []);
 
+  const excludeTask = () => {
+    setShowModal(true)
+  }
+
+  const viewEditors = () => {
+    setShowModal(true)
+  }
+
+  const editDescriptionTask = () => {
+    setShowModal(true)
+  }
+
   return (
     <div className={styles.modalcard}>
       <div className={styles.buttons_card}>
-        <button type="button" className={styles.button_exclude}>
-          Excluir
-        </button>
-        <button type="button" className={styles.button_exit}>
-          Sair
-        </button>
-        <button type="button" className={styles.button_editors}>
+        <button type="button" onClick={viewEditors} className={styles.button_editors}>
           Editores
         </button>
+        <Modal show={showModal} setShowModal={setShowModal}>
+              <ViewEditors />
+        </Modal>
 
         <div className={styles.button_date}>
           <p>Prazo :</p>
           <input className={styles.date} type="date" />
         </div>
+        <button type="button" onClick={excludeTask} className={styles.button_exclude}>
+          Excluir
+        </button>
+        <Modal show={showModal} setShowModal={setShowModal}>
+              <ExcludeTask />
+        </Modal>
+
       </div>
 
       <div className={styles.first_card}>
-        <h5 className={styles.titulos}>Nome da tarefa</h5>
+        <h5 className={styles.titulos}>{task.name}</h5>
         <p className={styles.titulo_second}>Nome da Coluna</p>
 
         <div className={styles.descblock}>
           <div className={styles.desctitle}>
             <i class="bi bi-list"></i>
             <p className={styles.descricaotitle}>Descrição</p>
-            <button type="button" className={styles.editbutton}>
+            <button type="button" onClick={editDescriptionTask} className={styles.editbutton}>
               Editar
             </button>
-          </div>
-          <p className={styles.descricao}>Oi! Aqui está uma descrição bem bonita S2</p>
-        </div>
+            <Modal show={showModal} setShowModal={setShowModal}>
+              <EditDescriptionTask />
+            </Modal>
 
+          </div>
+          <p className={styles.descricao}>{task.description}</p>
+        </div>
         <div className={styles.ativblock}>
           <p className={styles.descricaotitle}>Atividades</p>
           <div className={styles.listblock}>
