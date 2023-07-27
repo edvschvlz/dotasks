@@ -6,7 +6,7 @@ export const getAll = async (request, response) => {
 
     return response.status(200).send(users);
   } catch (err) {
-    return response.status(err.status).send(err.message);
+    return response.status(400).send(err.message);
   }
 };
 
@@ -20,7 +20,7 @@ export const register = async (request, response) => {
 
     return response.status(201).send(user);
   } catch (err) {
-    return response.status(err.status).send(err.message);
+    return response.status(400).send(err.message);
   }
 };
 
@@ -32,6 +32,6 @@ export const authentication = async (request, response) => {
 
     return response.status(200).send(access);
   } catch (err) {
-    return response.status(err.status).send(err.message);
+    return response.status(400).send(err.message);
   }
 };

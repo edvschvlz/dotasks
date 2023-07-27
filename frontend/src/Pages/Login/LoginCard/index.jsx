@@ -1,6 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import styles from './LoginCard.module.css';
 import { useState } from 'react';
+import axios from 'axios';
 import loadingGif from '../../../assets/img/loading-gif.gif';
 
 const LoginCard = () => {
@@ -50,6 +51,16 @@ const LoginCard = () => {
     }
 
     event.preventDefault();
+
+    axios({
+      method: 'post',
+      url: 'http://localhost:5000/users/auth',
+      data: fields,
+    }).then((response) => {
+      const auth = response.data;
+    });
+
+    return;
 
     setLoading(true);
 
