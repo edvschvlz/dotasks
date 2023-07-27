@@ -1,0 +1,22 @@
+.modalcard {
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  padding: 1.8em;
+}
+
+.descricaotitle {
+  display: flex;
+  flex-direction: row;
+}
+
+.buttons_lc {
+  display: flex;
+  flex-direction: row;
+}
+
+.bi::before,
+[class^='bi-']::before,
+[class*=' bi-']::before {
+  line-height: none !important;
+}
