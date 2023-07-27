@@ -1,6 +1,6 @@
 import dataSource from '../database/Connect.js';
 import { UserEntity } from '../entities/User.entity.js';
-import * as jwt from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 import * as bcrypt from 'bcrypt';
 
 let usersRepository = dataSource.getRepository(UserEntity);
@@ -34,7 +34,7 @@ const authentication = async (email, password) => {
 
   const payload = { name: user.name, id: user.id, email: user.email };
 
-  const access_token = jwt.sign(payload, null, { expiresIn: 3600 });
+  const access_token = jwt.sign(payload, 'dotasks');
 
   return { auth: true, access_token: access_token };
 };
