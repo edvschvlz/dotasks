@@ -1,22 +1,38 @@
 import styles from './ViewEditors.module.css';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 const ViewEditors = () => {
+  const [task, setTask] = useState({});
+
+  useEffect(() => {
+    axios({
+      method: 'get',
+      url: `http://localhost:5000/tasks/1`,
+      responseType: 'json',
+    })
+      .then((response) => {
+        const taskdata = response.data[0];
+
+        setTask(taskdata);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
 
   return (
     <div className={styles.modalcard}>
-      <p className={styles.descricaotitle}>Descrição</p>
+      <p className={styles.editor}>Editores</p>
+      <p className={styles.descricao}>{task.name}</p>
       <form className={styles.form_item}>
         <div >
-          <input
-            type="textarea"
-            className="form-desc-textarea"
-            id="floatingInput"
-            value=""
-          />
+          <input   id="floatingInput" className="form-desc-textarea" name="story"
+            value="usuario@email.com"> 
+          </input>
         </div>
-        <div className={styles.buttons_lc}>
-          <button type="submit" className={styles.button_login}>
-            Salvar
+        <div className={styles.buttons}>
+          <button type="submit" className={styles.button_save}>
+            Convidar Editor
           </button>
         </div>
       </form>
