@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import './Modal.css';
 
 const Modal = ({ show, setShowModal, children }) => {
