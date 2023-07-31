@@ -3,11 +3,13 @@ import axios from 'axios';
 import styles from './Projects.module.css';
 import Modal from '../../../Components/Modal';
 import NewProjectModal from '../NewProjectModal';
+import { useAuth } from '../../../contexts/Auth';
 
 function Projects() {
   const [projects, setProjects] = useState([]);
   const [projectsCard, setProjectsCard] = useState([]);
   const [showModal, setShowModal] = useState(false);
+  const { user } = useAuth();
   const text = useRef('');
 
   useEffect(() => {
