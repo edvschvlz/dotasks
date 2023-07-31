@@ -1,16 +1,25 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import logoNav from '../../assets/img/logo.svg';
 import user from '../../assets/img/user.png';
 import styles from './Navbar.module.css';
 import { useState } from 'react';
 import Modal from '../Modal';
 import SettingsModal from '../../Pages/Home/SettingsModal';
+import { useAuth } from '../../contexts/Auth';
 
-function Navbar() {
+function Navbar({ type }) {
+  const setType = type;
   const [showModal, setShowModal] = useState(false);
+  const { Logout } = useAuth();
+  const navigate = useNavigate();
 
   const settings = () => {
     setShowModal(true);
+  };
+
+  const handleLogout = () => {
+    Logout();
+    navigate('/');
   };
 
   return (
@@ -20,10 +29,12 @@ function Navbar() {
       </div>
 
       <div className={styles.user_bell_container}>
-        <div className={styles.button_ch}>
-          <button type="button">Sair</button>
-          <button type="button">Compartilhar</button>
-        </div>
+        {setType && (
+          <div className={styles.button_ch}>
+            <button type="button">Sair</button>
+            <button type="button">Compartilhar</button>
+          </div>
+        )}
 
         <i className="bi bi-bell-fill"></i>
 
@@ -49,8 +60,7 @@ function Navbar() {
             <li className="dropdown-item" onClick={settings}>
               Configurações
             </li>
-            <li className="dropdown-item">
-              <Link to={'/home'} />
+            <li className="dropdown-item" onClick={handleLogout}>
               Sair
             </li>
           </ul>

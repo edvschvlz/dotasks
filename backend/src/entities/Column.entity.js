@@ -1,25 +1,21 @@
 import { EntitySchema } from 'typeorm';
 
-export const ActivityEntity = new EntitySchema({
-  name: 'activity',
-  tableName: 'activities',
+export const ColumnEntity = new EntitySchema({
+  name: 'column',
+  tableName: 'columns',
   columns: {
     id: {
       primary: true,
       type: 'int',
       generated: true,
     },
-    description: {
+    name: {
       type: 'varchar',
-      length: 255,
+      length: 50,
     },
-    completed: {
+    projects_id: {
       type: 'int',
-      default: 0,
-    },
-    tasks_id: {
       primary: true,
-      type: 'int',
     },
   },
 });

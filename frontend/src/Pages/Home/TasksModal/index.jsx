@@ -8,6 +8,8 @@ import ExcludeTask from './InsideModals/ExcludeTask';
 
 const TasksModal = () => {
   const [showModal, setShowModal] = useState(false)
+  const [showModalView, setShowModalView] = useState(false)
+
   const [task, setTask] = useState({});
   const text = useRef('');
 
@@ -30,7 +32,7 @@ const TasksModal = () => {
   }
 
   const viewEditors = () => {
-    setShowModal(true)
+    setShowModalView(true)
   }
 
   const editDescriptionTask = () => {
@@ -43,7 +45,7 @@ const TasksModal = () => {
         <button type="button" onClick={viewEditors} className={styles.button_editors}>
           Editores
         </button>
-        <Modal show={showModal} setShowModal={setShowModal}>
+        <Modal show={showModalView} setShowModal={setShowModalView}>
               <ViewEditors />
         </Modal>
 

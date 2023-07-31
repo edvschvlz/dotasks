@@ -1,8 +1,8 @@
 import { Link, useNavigate } from 'react-router-dom';
 import styles from './LoginCard.module.css';
 import { useState } from 'react';
-import axios from 'axios';
 import loadingGif from '../../../assets/img/loading-gif.gif';
+import { useAuth } from '../../../contexts/Auth';
 
 const LoginCard = () => {
   const [fields, setFields] = useState({
@@ -12,6 +12,7 @@ const LoginCard = () => {
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
   const [loading, setLoading] = useState(false);
+  const { Login } = useAuth();
   const navigate = useNavigate();
 
   const handleChange = (event) => {
@@ -34,7 +35,7 @@ const LoginCard = () => {
     }
   };
 
-  const handleConfirm = (event) => {
+  const handleConfirm = async (event) => {
     if (!validateFields(fields.email)) {
       setEmailError(true);
       event.preventDefault();
@@ -42,6 +43,7 @@ const LoginCard = () => {
     } else {
       setEmailError(false);
     }
+
     if (!validateFields(fields.password)) {
       setPasswordError(true);
       event.preventDefault();
@@ -52,20 +54,19 @@ const LoginCard = () => {
 
     event.preventDefault();
 
-    axios({
-      method: 'post',
-      url: 'http://localhost:5000/users/auth',
-      data: fields,
-    }).then((response) => {
-      const auth = response.data;
-    });
-
-    return;
-
     setLoading(true);
 
-    const timer = setTimeout(() => {
-      navigate('/home');
+    const timer = setTimeout(async () => {
+      const isValid = await Login(fields);
+      console.log(isValid);
+
+      if (!isValid) {
+        setEmailError(true);
+        setPasswordError(true);
+        setLoading(false);
+      } else {
+        navigate('/home');
+      }
     }, 3000);
 
     return () => clearTimeout(timer);
@@ -101,7 +102,7 @@ const LoginCard = () => {
           />
           {passwordError && <span className={styles.error}>Senha inválida</span>}
         </div>
-        <button type="submit" className={styles.button_login}>
+        <button type={loading ? 'button' : 'submit'} className={styles.button_login}>
           {loading ? <img src={loadingGif} alt="" /> : 'Entrar'}
         </button>
       </form>
