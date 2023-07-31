@@ -18,6 +18,7 @@ export const TaskEntity = new EntitySchema({
     },
     deadline: {
       type: 'datetime',
+      default: null,
     },
     importance: {
       type: 'enum',

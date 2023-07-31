@@ -1,5 +1,5 @@
 import dataSource from '../database/Connect.js';
-import { ActivityEntity } from '../entities/Activity.entity';
+import { ActivityEntity } from '../entities/Activity.entity.js';
 
 let activitiesRepository = dataSource.getRepository(ActivityEntity);
 
