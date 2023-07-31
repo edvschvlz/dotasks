@@ -13,14 +13,17 @@ const save = async (name, description) => {
   const project = await projectsRepository.save({
     name: name,
     description: description,
-    deadline: deadline,
   });
 
   return project;
 };
 
 const findOneBy = async (id) => {
-  const project = await projectsRepository.findOneBy({ id: id });
+  const project = await projectsRepository.query(`SELECT * FROM dotasksdev.projects p 
+  INNER JOIN dotasksdev.columns c ON c.projects_id = p.id
+  LEFT JOIN dotasksdev.tasks t ON t.columns_id = c.id
+  LEFT JOIN dotasksdev.activities a ON a.tasks_id = t.id
+  WHERE p.id = ${id}`);
 
   return project;
 };
