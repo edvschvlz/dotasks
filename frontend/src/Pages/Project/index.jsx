@@ -5,7 +5,7 @@ import styles from './Project.module.css';
 const Project = () => {
   return (
     <>
-      <Navbar />
+      <Navbar type={true} />
       <div className={styles.container}>
         <Column />
         <div className={styles.add_column}>

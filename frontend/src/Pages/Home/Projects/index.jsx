@@ -20,10 +20,9 @@ function Projects() {
         const projects = response.data;
 
         setProjects(projects);
-        setProjectsCard(projects);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [projects]);
 
   const handleSubmit = () => {
     if (text.current.value) {

@@ -25,11 +25,11 @@ const authentication = async (email, password) => {
   const user = await usersRepository.findOne({ where: { email: email } });
 
   if (!user) {
-    throw new Error('Usuário não existe !');
+    throw new Error('Usuário não existe!');
   }
 
-  if (!bcrypt.compare(password, user.password)) {
-    throw new Error('Credenciais incorretas !');
+  if (!bcrypt.compareSync(password, user.password)) {
+    throw new Error('Credenciais incorretas!');
   }
 
   const payload = { name: user.name, id: user.id, email: user.email };

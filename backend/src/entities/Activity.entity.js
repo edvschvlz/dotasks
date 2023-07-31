@@ -17,7 +17,7 @@ export const ActivityEntity = new EntitySchema({
       type: 'int',
       default: 0,
     },
-    task_id: {
+    tasks_id: {
       primary: true,
       type: 'int',
     },
