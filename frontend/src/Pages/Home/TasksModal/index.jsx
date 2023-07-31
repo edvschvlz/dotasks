@@ -4,12 +4,12 @@ import styles from './TasksModal.module.css';
 import Modal from '../../../Components/Modal';
 import EditDescriptionTask from './InsideModals/EditDescriptionTask';
 import ViewEditors from './InsideModals/ViewEditors';
-import ExcludeTask from './InsideModals/ExcludeTask';
+import { useAuth } from '../../../contexts/Auth';
 
 const TasksModal = () => {
   const [showModal, setShowModal] = useState(false)
   const [showModalView, setShowModalView] = useState(false)
-
+  const { token } = useAuth();
   const [task, setTask] = useState({});
   const text = useRef('');
 
@@ -18,6 +18,9 @@ const TasksModal = () => {
       method: 'get',
       url: `http://localhost:5000/tasks/1`,
       responseType: 'json',
+      headers: { 
+        Authorization: token, 
+      }
     })
       .then((response) => {
         const taskdata = response.data[0];
@@ -25,11 +28,8 @@ const TasksModal = () => {
         setTask(taskdata);
       })
       .catch((err) => console.log(err));
-  }, []);
-
-  const excludeTask = () => {
-    setShowModal(true)
-  }
+  },
+   []);
 
   const viewEditors = () => {
     setShowModalView(true)
@@ -53,12 +53,10 @@ const TasksModal = () => {
           <p>Prazo :</p>
           <input className={styles.date} type="date" />
         </div>
-        <button type="button" onClick={excludeTask} className={styles.button_exclude}>
+        <button type="button" className={styles.button_exclude}>
           Excluir
         </button>
-        <Modal show={showModal} setShowModal={setShowModal}>
-              <ExcludeTask />
-        </Modal>
+  
 
       </div>
 

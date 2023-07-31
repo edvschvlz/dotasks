@@ -43,4 +43,10 @@ const hashPassword = async (password) => {
   return await bcrypt.hash(password, 10);
 };
 
-export const UsersRepository = { getAll, save, authentication };
+const getById = async (id) => {
+  const user = await tasksRepository.findBy({ id: id });
+
+  return user;
+};
+
+export const UsersRepository = { getAll, save, authentication, getById };
