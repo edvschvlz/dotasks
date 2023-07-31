@@ -8,13 +8,15 @@ const ViewEditors = () => {
   useEffect(() => {
     axios({
       method: 'get',
-      url: `http://localhost:5000/tasks/1`,
+      url: `http://localhost:5000/tasks/getTaskEditors/1`,
       responseType: 'json',
     })
       .then((response) => {
-        const taskdata = response.data[0];
+        const users = response.data[0];
 
-        setTask(taskdata);
+        console.log(users)
+
+        setTask(users);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -22,7 +24,7 @@ const ViewEditors = () => {
 
   return (
     <div className={styles.modalcard}>
-      <p className={styles.editor}>Editores</p>
+      <p className={styles.editor}>Editores:</p>
       <p className={styles.descricao}>{task.name}</p>
       <form className={styles.form_item}>
         <div >

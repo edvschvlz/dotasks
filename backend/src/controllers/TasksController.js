@@ -1,4 +1,6 @@
 import { TasksRepository } from '../repositories/TasksRepository.js';
+import { UsersHasTasksRepository } from '../repositories/UsersHasTasksRepository.js';
+import { UsersRepository } from '../repositories/UsersRepository.js';
 
 export const getAll = async (request, response) => {
   try {
@@ -15,6 +17,19 @@ export const getById = async (request, response) => {
     const task = await TasksRepository.getById(request.body.id);
 
     return response.status(200).send(task);
+  } catch (err) {
+    return response.status(400).send(err.message);
+  }
+};
+
+export const getTaskEditors = async (request, response) => {
+  try {
+    const task_id = await TasksRepository.getById(request.body.id);
+    const id_user = await UsersHasTasksRepository.getUserByTask(task_id);
+    const users = await UsersRepository.getById(id_user);
+    
+
+    return response.status(200).send(users);
   } catch (err) {
     return response.status(400).send(err.message);
   }

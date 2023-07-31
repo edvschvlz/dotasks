@@ -18,4 +18,10 @@ const save = async (users_id, tasks_id) => {
   return user_has_task;
 };
 
-export const UsersHasTasksRepository = { getAll, save };
+const getUserByTask = async (tasks_id) => {
+  const id_user = await usersHasTasksRepository.findBy({ tasks_id: tasks_id });
+
+  return id_user.users_id;
+};
+
+export const UsersHasTasksRepository = { getAll, save, getUserByTask };
