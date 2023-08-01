@@ -2,13 +2,11 @@ import { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import styles from './TasksModal.module.css';
 import Modal from '../../../Components/Modal';
-import EditDescriptionTask from './InsideModals/EditDescriptionTask';
-import ViewEditors from './InsideModals/ViewEditors';
+import EditDescriptionTask from './EditDescriptionTask';
 import { useAuth } from '../../../contexts/Auth';
 
 const TasksModal = () => {
   const [showModal, setShowModal] = useState(false)
-  const [showModalView, setShowModalView] = useState(false)
   const { token } = useAuth();
   const [task, setTask] = useState({});
   const text = useRef('');
@@ -31,10 +29,6 @@ const TasksModal = () => {
   },
    []);
 
-  const viewEditors = () => {
-    setShowModalView(true)
-  }
-
   const editDescriptionTask = () => {
     setShowModal(true)
   }
@@ -42,12 +36,6 @@ const TasksModal = () => {
   return (
     <div className={styles.modalcard}>
       <div className={styles.buttons_card}>
-        <button type="button" onClick={viewEditors} className={styles.button_editors}>
-          Editores
-        </button>
-        <Modal show={showModalView} setShowModal={setShowModalView}>
-              <ViewEditors />
-        </Modal>
 
         <div className={styles.button_date}>
           <p>Prazo :</p>
@@ -56,10 +44,8 @@ const TasksModal = () => {
         <button type="button" className={styles.button_exclude}>
           Excluir
         </button>
-  
 
       </div>
-
       <div className={styles.first_card}>
         <h5 className={styles.titulos}>{task.name}</h5>
         <p className={styles.titulo_second}>Nome da Coluna</p>
