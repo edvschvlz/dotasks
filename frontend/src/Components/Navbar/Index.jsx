@@ -10,7 +10,7 @@ import { useAuth } from '../../contexts/Auth';
 function Navbar({ type }) {
   const setType = type;
   const [showModal, setShowModal] = useState(false);
-  const { Logout, user } = useAuth();
+  const { Logout } = useAuth();
   const navigate = useNavigate();
 
   const settings = () => {
