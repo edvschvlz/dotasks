@@ -19,8 +19,8 @@ export const UserHasProjectEntity = new EntitySchema({
     },
     user_permission: {
       type: 'enum',
-      enum: ['AUTOR','ADMINISTRATOR','VIEWER'],
-      default: 'VIEWER',
+      enum: ['ADMINISTRATOR', 'EDITOR'],
+      default: 'EDITOR',
     },
   },
 });

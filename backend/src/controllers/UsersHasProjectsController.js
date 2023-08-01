@@ -1,20 +1,10 @@
 import { UsersHasProjectsRepository } from '../repositories/UsersHasProjectsRepository.js';
 
-export const getAll = async (request, response) => {
+export const getAllByUserId = async (request, response) => {
   try {
-    const users_has_projects = await UsersHasProjectsRepository.getAll();
+    const projects = await UsersHasProjectsRepository.getAllByUserId(request.user.id);
 
-    return response.status(200).send(users_has_projects);
-  } catch (err) {
-    return response.status(400).send(err.message);
-  }
-};
-
-export const getById = async (request, response) => {
-  try {
-    const user_has_project = await UsersHasProjectsRepository.getById(request.body.id);
-
-    return response.status(200).send(user_has_project);
+    return response.status(200).send(projects);
   } catch (err) {
     return response.status(400).send(err.message);
   }
@@ -22,11 +12,12 @@ export const getById = async (request, response) => {
 
 export const save = async (request, response) => {
   try {
-    const { users_id, projects_id, user_permission } = request.body;
+    const { projects_id } = request.body;
+    const user_id = request.user.id;
 
-    const user_has_project = await UsersHasProjectsRepository.save(users_id, projects_id, user_permission);
+    await UsersHasProjectsRepository.save(user_id, projects_id);
 
-    return response.status(201).send(user_has_project);
+    return response.status(201).send('Created');
   } catch (err) {
     return response.status(400).send(err.message);
   }
