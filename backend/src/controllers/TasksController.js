@@ -1,6 +1,4 @@
 import { TasksRepository } from '../repositories/TasksRepository.js';
-import { UsersHasTasksRepository } from '../repositories/UsersHasTasksRepository.js';
-import { UsersRepository } from '../repositories/UsersRepository.js';
 
 export const getAll = async (request, response) => {
   try {
@@ -27,7 +25,6 @@ export const getTaskEditors = async (request, response) => {
     const task_id = await TasksRepository.getById(request.body.id);
     const id_user = await UsersHasTasksRepository.getUserByTask(task_id);
     const users = await UsersRepository.getById(id_user);
-    
 
     return response.status(200).send(users);
   } catch (err) {
