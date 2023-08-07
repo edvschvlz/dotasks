@@ -10,7 +10,7 @@ import { useAuth } from '../../contexts/Auth';
 function Navbar({ type }) {
   const setType = type;
   const [showModal, setShowModal] = useState(false);
-  const { Logout, user } = useAuth();
+  const { Logout } = useAuth();
   const navigate = useNavigate();
 
   const settings = () => {
@@ -49,7 +49,7 @@ function Navbar({ type }) {
           </div>
 
           <Modal show={showModal} setShowModal={setShowModal}>
-            <SettingsModal />
+            {showModal && <SettingsModal show={showModal} setShowModal={setShowModal} />}
           </Modal>
 
           <ul className="dropdown-menu dropdown-menu-end">

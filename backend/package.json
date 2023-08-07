@@ -7,7 +7,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "node -r dotenv/config src/server.js",
-    "dev": "nodemon --watch 'src/*' --exec node -r dotenv/config src/server.js"
+    "dev": "nodemon --watch src --exec node -r dotenv/config src/server.js"
   },
   "author": "Eduardo Schulz, Paula Rossini, Luiza Boaventura",
   "license": "ISC",
