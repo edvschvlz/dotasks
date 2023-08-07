@@ -49,7 +49,7 @@ function Navbar({ type }) {
           </div>
 
           <Modal show={showModal} setShowModal={setShowModal}>
-            <SettingsModal />
+            {showModal && <SettingsModal show={showModal} setShowModal={setShowModal} />}
           </Modal>
 
           <ul className="dropdown-menu dropdown-menu-end">
