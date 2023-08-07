@@ -4,27 +4,33 @@ import styles from './Projects.module.css';
 import Modal from '../../../Components/Modal';
 import NewProjectModal from '../NewProjectModal';
 import { useAuth } from '../../../contexts/Auth';
+import { Link, useNavigate } from 'react-router-dom';
 
 function Projects() {
-  const [projects, setProjects] = useState([]);
+  let projects = [];
   const [projectsCard, setProjectsCard] = useState([]);
   const [showModal, setShowModal] = useState(false);
-  const { user } = useAuth();
+  const { token } = useAuth();
+  const navigate = useNavigate();
   const text = useRef('');
 
   useEffect(() => {
     axios({
       method: 'get',
-      url: 'http://localhost:5000/projects',
+      url: 'http://localhost:5000/users_has_projects',
+      headers: {
+        'x-access-token': token,
+      },
       responseType: 'json',
     })
       .then((response) => {
-        const projects = response.data;
+        const data = response.data;
 
-        setProjects(projects);
+        projects = data;
+        setProjectsCard(projects);
       })
       .catch((err) => console.log(err));
-  }, [projects]);
+  }, []);
 
   const handleSubmit = () => {
     if (text.current.value) {
@@ -32,11 +38,15 @@ function Projects() {
 
       if (project) {
         return setProjectsCard(projects.filter((p) => p.name === project.name));
-      } else {
-        return setProjectsCard([]);
       }
     }
-    return setProjectsCard(projects);
+    setProjectsCard(projects);
+  };
+
+  const handleProject = (id) => {
+    navigate({
+      pathname: `/project/${id}`,
+    });
   };
 
   const newProject = () => {
@@ -71,7 +81,12 @@ function Projects() {
 
       <div className={styles.project}>
         {projectsCard.map((project, index) => (
-          <div key={index} className={styles.project_card}>
+          <div
+            key={index}
+            id={project.id}
+            className={styles.project_card}
+            onClick={() => handleProject(project.id)}
+          >
             {project.name}
           </div>
         ))}

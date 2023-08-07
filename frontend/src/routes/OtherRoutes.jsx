@@ -12,7 +12,7 @@ const OtherRoutes = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/home" element={<Home />} />
-        <Route path="/project" element={<Project />} />
+        <Route path="/project/:id" element={<Project />} />
         <Route path="/page-test" element={<PageTest />} />
         <Route path="/newproject" element={<NewProjectModal />} />
         <Route path="/newtask" element={<TasksModal />} />
