@@ -58,7 +58,6 @@ const LoginCard = () => {
 
     const timer = setTimeout(async () => {
       const isValid = await Login(fields);
-      console.log(isValid);
 
       if (!isValid) {
         setEmailError(true);
