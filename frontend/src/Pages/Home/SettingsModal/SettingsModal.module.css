@@ -67,4 +67,5 @@
 .error {
   font-size: 0.7em;
   color: var(--vermelho);
+  line-height: 0.5em;
 }

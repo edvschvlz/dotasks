@@ -1,73 +1,122 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import styles from './SettingsModal.module.css';
+import { useAuth } from '../../../contexts/Auth';
+import axios from 'axios';
 
 const SettingsModal = ({ showModal, setShowModal }) => {
-  const [name, setName] = useState('');
-  const [currentPassword, setCurrentPassword] = useState('');
-  const [newPassword, setNewPassword] = useState('');
-  const [passwordAgain, setPasswordAgain] = useState('');
+  const { user, token } = useAuth();
+  const userName = JSON.parse(user).name;
+  const userEmail = JSON.parse(user).email;
+  const [fields, setFields] = useState({
+    name: userName,
+    email: userEmail,
+    newPassword: '',
+    passwordAgain: '',
+  });
+  const [nameError, setNameError] = useState(false);
+  const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
   const [passwordAgainError, setPasswordAgainError] = useState(false);
 
-  const validateFields = (password, passwordAgain) => {
-    if (password !== passwordAgain) {
+  const handleChange = (event) => {
+    setFields({ ...fields, [event.target.name]: event.target.value });
+  };
+
+  const validateFields = (value) => {
+    if (fields.name === value) {
+      return fields.name.match(/^[a-zA-Z]{2,}$/);
+    }
+
+    if (fields.email === value) {
+      return String(fields.email)
+        .toLowerCase()
+        .match(
+          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+        );
+    }
+
+    if (fields.newPassword === value) {
+      return String(fields.newPassword)
+        .toLowerCase()
+        .match(/^[a-zA-Z0-9]{6,}$/);
+    }
+
+    if (fields.newPassword === value) {
+      return fields.newPassword === fields.passwordAgain;
+    }
+  };
+
+  const handleConfirm = (event) => {
+    event.preventDefault();
+
+    if (!validateFields(fields.name)) {
+      setNameError(true);
+      event.preventDefault();
+      return;
+    } else {
+      setNameError(false);
+    }
+
+    if (!validateFields(fields.email)) {
+      setEmailError(true);
+      event.preventDefault();
+      return;
+    } else {
+      setEmailError(false);
+    }
+
+    if (!validateFields(fields.newPassword)) {
+      setPasswordError(true);
+      event.preventDefault();
+      return;
+    } else {
+      setPasswordError(false);
+    }
+
+    if (!validateFields(fields.passwordAgain)) {
       setPasswordAgainError(true);
+      event.preventDefault();
+      return;
     } else {
       setPasswordAgainError(false);
     }
 
-    if (
-      !String(password)
-        .toLowerCase()
-        .match(/^(?=.*[a-zA-Z0-9])[a-zA-Z0-9]{6,}$/)
-    ) {
+    if (passwordError && passwordAgainError) {
       setPasswordError(true);
-    } else {
-      setPasswordError(false);
+      setPasswordAgainError(true);
     }
-  };
 
-  const handleChange = (event) => {
-    // setFields({ ...fields, [event.target.name]: event.target.value });
-    if (event.target.name === 'name') {
-      setName(event.target.value);
-    }
-    if (event.target.name === 'currentPassword') {
-      setCurrentPassword(event.target.value);
-    }
-    if (event.target.name === 'newPassword') {
-      setNewPassword(event.target.value);
-    }
-    if (event.target.name === 'passwordAgain') {
-      setPasswordAgain(event.target.value);
-    }
-  };
+    console.log(fields);
 
-  console.log(name, currentPassword, newPassword, passwordAgain);
-
-  const handleConfirm = (event) => {
-    validateFields(newPassword, passwordAgain);
-    event.preventDefault();
-
-    console.log('passwordError', passwordError);
-    console.log('passwordAgainError', passwordAgainError);
-
-    setShowModal(false);
+    axios({
+      method: 'put',
+      url: 'http://localhost:5000/users',
+      headers: {
+        'x-access-token': token,
+      },
+      data: {
+        name: fields.name,
+        email: fields.email,
+        password: fields.newPassword,
+      },
+    }).then(() => {
+      setShowModal(false);
+    });
   };
 
   return (
     <div className={styles.modal}>
       <p className={styles.title}>Configurar minha conta</p>
       <form onSubmit={handleConfirm}>
-        <div className={styles.header}>
+        {/* <div className={styles.header}>
           <div className={styles.avatar}></div>
           <input className={styles.link} type="file" id="myfile" name="myfile" />
-        </div>
+        </div> */}
         <div className={`mb-3 container-input`}>
           <input
             type="text"
             name="name"
-            value={name}
+            value={fields.name}
             className="form-control"
             id="floatingInput"
             placeholder="Nome"
@@ -75,23 +124,25 @@ const SettingsModal = ({ showModal, setShowModal }) => {
             required
           />
         </div>
+        {nameError && <span className={styles.error}>Nome mínimo 2 letras</span>}
         <div className={`mb-3 container-input`}>
           <input
-            type="password"
-            name="currentPassword"
-            value={currentPassword}
+            type="email"
+            name="email"
+            value={fields.email}
             className="form-control"
             id="floatingInput"
-            placeholder="Senha atual"
+            placeholder="Email"
             onChange={handleChange}
             required
           />
         </div>
+        {emailError && <span className={styles.error}>Email inválido</span>}
         <div className={`mb-3 container-input`}>
           <input
             type="password"
             name="newPassword"
-            value={newPassword}
+            value={fields.newPassword}
             className="form-control"
             id="floatingInput"
             placeholder="Nova senha"
@@ -103,7 +154,7 @@ const SettingsModal = ({ showModal, setShowModal }) => {
           <input
             type="password"
             name="passwordAgain"
-            value={passwordAgain}
+            value={fields.passwordAgain}
             className="form-control"
             id="floatingInput"
             placeholder="Redigite senha"
@@ -111,7 +162,9 @@ const SettingsModal = ({ showModal, setShowModal }) => {
             required
           />
         </div>
-        {passwordError && <span className={styles.error}>Senha inválida</span>}
+        {passwordError && (
+          <span className={styles.error}>Senha mínimo 6 caracteres (números e letras)</span>
+        )}
         {passwordError && passwordAgainError && <span className={styles.error}>/ </span>}
         {passwordAgainError && <span className={styles.error}>Senhas não coincidem</span>}
         <div className={styles.buttons}>

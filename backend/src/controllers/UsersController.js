@@ -24,6 +24,23 @@ export const register = async (request, response) => {
   }
 };
 
+export const update = async (request, response) => {
+  try {
+    const body = request.body;
+    const user_id = request.user.id;
+
+    console.log('body', body);
+
+    const user = await UsersRepository.update(user_id, body);
+
+    console.log('user', user);
+
+    return response.status(200).send(user);
+  } catch (err) {
+    return response.status(400).send(err.message);
+  }
+};
+
 export const authentication = async (request, response) => {
   try {
     const { email, password } = request.body;

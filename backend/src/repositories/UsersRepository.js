@@ -21,6 +21,14 @@ const save = async (email, name, password) => {
   return user;
 };
 
+const update = async (id, user) => {
+  if (user.password) {
+    user.password = await hashPassword(user.password);
+  }
+
+  await usersRepository.update({ id: id }, user);
+};
+
 const authentication = async (email, password) => {
   const user = await usersRepository.findOne({ where: { email: email } });
 
@@ -44,9 +52,9 @@ const hashPassword = async (password) => {
 };
 
 const getById = async (id) => {
-  const user = await tasksRepository.findBy({ id: id });
+  const user = await usersRepository.findBy({ id: id });
 
   return user;
 };
 
-export const UsersRepository = { getAll, save, authentication, getById };
+export const UsersRepository = { getAll, save, authentication, update };
