@@ -1,14 +1,13 @@
 import styles from './EditDescriptionTask.module.css';
 
-const EditDescriptionTask = () => {
+const EditDescriptionTask = ({activity}) => {
   return (
     <div className={styles.modalcard}>
       <p className={styles.descricaotitle}>Descrição</p>
       <form className={styles.form_item}>
         <div >
           <textarea   id="floatingInput" className="form-desc-textarea" name="story"
-            rows="5" cols="33">
-            It was a dark and stormy night...
+            rows="5" cols="33" value={activity.activity_description} > 
           </textarea>
         </div>
         <div className={styles.buttons}>
