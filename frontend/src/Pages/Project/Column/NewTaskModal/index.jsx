@@ -1,30 +1,29 @@
 import axios from 'axios';
 import styles from './NewTaskModal.module.css';
 import { useEffect, useState } from 'react';
+import { useAuth } from '../../../../contexts/Auth';
 
-const NewTaskModal = ({ setShowModal }) => {
+const NewTaskModal = ({ column, setShowModal }) => {
   const [taskTitle, setTaskTitle] = useState('');
   const [importance, setImportance] = useState('');
+  const { token } = useAuth();
 
-  const handleConfirm = () => {
-    // axios({
-    //   method: 'post',
-    //   url: 'http://localhost:5000/tasks',
-    //   headers: {
-    //     'x-access-token': token,
-    //   },
-    //   data: {
-    //     name: taskTitle,
-    //     importance: importance,
-    //     columns_id: '',
-    //   },
-    // }).then(() => {
-    //   setShowModal(false);
-    // });
+  const handleConfirm = (e) => {
+    axios({
+      method: 'post',
+      url: 'http://localhost:5000/tasks',
+      headers: {
+        'x-access-token': token,
+      },
+      data: {
+        name: taskTitle,
+        importance: importance,
+        columns_id: column,
+      },
+    }).then(() => {
+      setShowModal(false);
+    });
   };
-
-  console.log('taskTitle:', taskTitle);
-  console.log('importance:', importance);
 
   useEffect(() => {
     setTaskTitle('');

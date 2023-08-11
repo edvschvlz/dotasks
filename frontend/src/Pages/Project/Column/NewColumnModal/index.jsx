@@ -1,27 +1,48 @@
+import axios from 'axios';
 import styles from './NewColumnModal.module.css';
 import { useEffect, useState } from 'react';
+import { useAuth } from '../../../../contexts/Auth';
+import { useParams } from 'react-router-dom';
 
 const NewTaskModal = ({ setShowModal }) => {
   const [columnTitle, setColumnTitle] = useState('');
+  const [project, setProject] = useState();
+  const { token } = useAuth();
+  const { id } = useParams();
 
   useEffect(() => {
     setColumnTitle('');
   }, []);
 
+  useEffect(() => {
+    axios({
+      method: 'get',
+      url: `http://localhost:5000/projects/${id}`,
+      responseType: 'json',
+      headers: {
+        'x-access-token': token,
+      },
+    })
+      .then((response) => {
+        setProject(response.data.project_id);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
   const handleConfirm = () => {
-    // axios({
-    //   method: 'post',
-    //   url: 'http://localhost:5000/columns',
-    //   headers: {
-    //     'x-access-token': token,
-    //   },
-    //   data: {
-    //     name: columnTitle,
-    //     columns_id: '',
-    //   },
-    // }).then(() => {
-    //   setShowModal(false);
-    // });
+    axios({
+      method: 'post',
+      url: 'http://localhost:5000/columns',
+      headers: {
+        'x-access-token': token,
+      },
+      data: {
+        name: columnTitle,
+        projects_id: project,
+      },
+    }).then(() => {
+      setShowModal(false);
+    });
   };
 
   return (
