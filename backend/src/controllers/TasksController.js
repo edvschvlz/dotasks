@@ -10,9 +10,10 @@ export const getAll = async (request, response) => {
   }
 };
 
-export const getById = async (request, response) => {
+export const findOneById = async (request, response) => {
   try {
-    const task = await TasksRepository.getById(request.body.id);
+    const { id } = request.params;
+    const task = await TasksRepository.findOneById(id);
 
     return response.status(200).send(task);
   } catch (err) {
