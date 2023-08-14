@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+// import { useRecoilState} from "recoil";
 import axios from 'axios';
 import styles from './TasksModal.module.css';
 import Modal from '../../../Components/Modal';
@@ -8,36 +9,46 @@ import { useAuth } from '../../../contexts/Auth';
 const TasksModal = () => {
   const [showModal, setShowModal] = useState(false)
   const { token } = useAuth();
-  const [project, setProject] = useState({});
-  const [column, setColumn] = useState({});
   const [task, setTask] = useState({});
   const [activity, setActivity] = useState({});
 
   useEffect(() => {
     axios({
       method: 'get',
-      url: `http://localhost:5000/projects/1`,
+      url: `http://localhost:5000/tasks/1`,
       responseType: 'json',
       headers: { 
         'x-access-token': token, 
       }
     })
       .then((response) => {
-        console.log("data: ",response.data);
-      
-        const projectdata = response.data;
-        const columndata =  projectdata.columns;
-        const taskdata =  projectdata.columns[0].tasks;
-        const activitiesdata =  projectdata.columns[0].tasks[0].activities;
-        
-        setProject(projectdata);
-        setColumn(columndata);
+
+        const taskdata = response.data;
+        console.log(taskdata)
+        const activitiesdata =  taskdata.activities;
+  
         setTask(taskdata);
         setActivity(activitiesdata);
 
       })
       .catch((err) => console.log(err));
   }, []);
+
+ // const [listaDeCompras, setListaDeCompras] = useRecoilState(listaDeComprasState);
+
+  const mudarComplete = (it) => {
+      // const listaDeComprasEditada = listaDeCompras.map((compra) => {
+          if (it.activity_completed === 1){
+           
+              //return {...compra, complete: !compra.complete}
+          }else{
+           
+          }
+          //return compra;
+   
+      // setListaDeCompras(listaDeComprasEditada);
+  }
+
 
   return (
     <div className={styles.modalcard}>
@@ -50,11 +61,14 @@ const TasksModal = () => {
         <button type="button" className={styles.button_exclude}>
           Excluir
         </button>
+        <button type="button" className={styles.button_save}>
+          Salvar Alterações
+        </button>
 
       </div>
       <div className={styles.first_card}>
-        <h5 className={styles.titulos}>{project && project.columns[0].tasks[0].task_name}</h5>
-        <p className={styles.titulo_second}>{column.column_name}</p>
+        <h5 className={styles.titulos}>{task.task_name}</h5>
+        <p className={styles.titulo_second}>{task.column_name}</p>
 
         <div className={styles.descblock}>
           <div className={styles.desctitle}>
@@ -64,11 +78,11 @@ const TasksModal = () => {
               Editar
             </button>
             <Modal show={showModal} setShowModal={setShowModal}>
-              <EditDescriptionTask activity={activity}/>
+              <EditDescriptionTask task={task}/>
             </Modal>
 
           </div>
-          <p className={styles.descricao}>{project.columns[0].tasks[0].task_description}</p>
+          <p className={styles.descricao}>{task.task_description}</p>
         </div>
         <div className={styles.ativblock}>
           <p className={styles.descricaotitle}>Atividades</p>
@@ -81,16 +95,14 @@ const TasksModal = () => {
                  class="form-check-input"
                  type="checkbox"
                  value={it.activity_completed}
-                 id="flexCheckDefault"
+                 onClick={() => mudarComplete(it)}
                ></input>
-               <label class="form-check-label" for="flexCheckDefault">
+               <label class={it.activity_completed == 1  ? 'lista__item--completado' : 'lista__item'}>
                  {it.activity_description}
                </label>
              </div>
+
             ))}
-           
-
-
           </div>
         </div>
 
