@@ -34,9 +34,9 @@ export const getTaskEditors = async (request, response) => {
 
 export const save = async (request, response) => {
   try {
-    const { name, description, deadline, importance, columns_id } = request.body;
+    const { name, importance, columns_id } = request.body;
 
-    const task = await TasksRepository.save(name, description, deadline, importance, columns_id);
+    const task = await TasksRepository.save(name, importance, columns_id);
 
     return response.status(201).send(task);
   } catch (err) {
