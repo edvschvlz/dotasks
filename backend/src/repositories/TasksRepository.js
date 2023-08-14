@@ -13,11 +13,9 @@ const getAll = async () => {
   return tasks;
 };
 
-const save = async (name, description) => {
+const save = async (name, importance, columns_id) => {
   const task = await tasksRepository.save({
     name: name,
-    description: description,
-    deadline: deadline,
     importance: importance,
     columns_id: columns_id,
   });
