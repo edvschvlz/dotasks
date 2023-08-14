@@ -1,53 +1,47 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import styles from './TasksModal.module.css';
 import Modal from '../../../Components/Modal';
-import EditDescriptionTask from './InsideModals/EditDescriptionTask';
-import ViewEditors from './InsideModals/ViewEditors';
+import EditDescriptionTask from './EditDescriptionTask';
 import { useAuth } from '../../../contexts/Auth';
 
 const TasksModal = () => {
   const [showModal, setShowModal] = useState(false)
-  const [showModalView, setShowModalView] = useState(false)
   const { token } = useAuth();
+  const [project, setProject] = useState({});
+  const [column, setColumn] = useState({});
   const [task, setTask] = useState({});
-  const text = useRef('');
+  const [activity, setActivity] = useState({});
 
   useEffect(() => {
     axios({
       method: 'get',
-      url: `http://localhost:5000/tasks/1`,
+      url: `http://localhost:5000/projects/1`,
       responseType: 'json',
       headers: { 
-        Authorization: token, 
+        'x-access-token': token, 
       }
     })
       .then((response) => {
-        const taskdata = response.data[0];
-
+        console.log("data: ",response.data);
+      
+        const projectdata = response.data;
+        const columndata =  projectdata.columns;
+        const taskdata =  projectdata.columns[0].tasks;
+        const activitiesdata =  projectdata.columns[0].tasks[0].activities;
+        
+        setProject(projectdata);
+        setColumn(columndata);
         setTask(taskdata);
+        setActivity(activitiesdata);
+
       })
       .catch((err) => console.log(err));
-  },
-   []);
-
-  const viewEditors = () => {
-    setShowModalView(true)
-  }
-
-  const editDescriptionTask = () => {
-    setShowModal(true)
-  }
+  }, []);
 
   return (
     <div className={styles.modalcard}>
       <div className={styles.buttons_card}>
-        <button type="button" onClick={viewEditors} className={styles.button_editors}>
-          Editores
-        </button>
-        <Modal show={showModalView} setShowModal={setShowModalView}>
-              <ViewEditors />
-        </Modal>
 
         <div className={styles.button_date}>
           <p>Prazo :</p>
@@ -56,42 +50,47 @@ const TasksModal = () => {
         <button type="button" className={styles.button_exclude}>
           Excluir
         </button>
-  
 
       </div>
-
       <div className={styles.first_card}>
-        <h5 className={styles.titulos}>{task.name}</h5>
-        <p className={styles.titulo_second}>Nome da Coluna</p>
+        <h5 className={styles.titulos}>{project && project.columns[0].tasks[0].task_name}</h5>
+        <p className={styles.titulo_second}>{column.column_name}</p>
 
         <div className={styles.descblock}>
           <div className={styles.desctitle}>
             <i class="bi bi-list"></i>
             <p className={styles.descricaotitle}>Descrição</p>
-            <button type="button" onClick={editDescriptionTask} className={styles.editbutton}>
+            <button type="button" onClick={() => setShowModal(true)} className={styles.editbutton}>
               Editar
             </button>
             <Modal show={showModal} setShowModal={setShowModal}>
-              <EditDescriptionTask />
+              <EditDescriptionTask activity={activity}/>
             </Modal>
 
           </div>
-          <p className={styles.descricao}>{task.description}</p>
+          <p className={styles.descricao}>{project.columns[0].tasks[0].task_description}</p>
         </div>
         <div className={styles.ativblock}>
           <p className={styles.descricaotitle}>Atividades</p>
           <div className={styles.listblock}>
-            <div class="form-check">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                value=""
-                id="flexCheckDefault"
-              ></input>
-              <label class="form-check-label" for="flexCheckDefault">
-                Pesquisar grupos de atividades que façam adoleta vendados
-              </label>
-            </div>
+
+           {Array.isArray(activity) && activity.map((it) =>(
+
+               <div class="form-check">
+               <input
+                 class="form-check-input"
+                 type="checkbox"
+                 value={it.activity_completed}
+                 id="flexCheckDefault"
+               ></input>
+               <label class="form-check-label" for="flexCheckDefault">
+                 {it.activity_description}
+               </label>
+             </div>
+            ))}
+           
+
+
           </div>
         </div>
 
