@@ -7,7 +7,7 @@ import EditDescriptionTask from './EditDescriptionTask';
 import { useAuth } from '../../../contexts/Auth';
 
 const TasksModal = () => {
-  const [showModal, setShowModal] = useState(false)
+  const [showModal, setShowModal] = useState(false);
   const { token } = useAuth();
   const [task, setTask] = useState({});
   const [activity, setActivity] = useState({});
@@ -17,43 +17,37 @@ const TasksModal = () => {
       method: 'get',
       url: `http://localhost:5000/tasks/1`,
       responseType: 'json',
-      headers: { 
-        'x-access-token': token, 
-      }
+      headers: {
+        'x-access-token': token,
+      },
     })
       .then((response) => {
-
         const taskdata = response.data;
-        console.log(taskdata)
-        const activitiesdata =  taskdata.activities;
-  
+        console.log(taskdata);
+        const activitiesdata = taskdata.activities;
+
         setTask(taskdata);
         setActivity(activitiesdata);
-
       })
       .catch((err) => console.log(err));
   }, []);
 
- // const [listaDeCompras, setListaDeCompras] = useRecoilState(listaDeComprasState);
+  // const [listaDeCompras, setListaDeCompras] = useRecoilState(listaDeComprasState);
 
   const mudarComplete = (it) => {
-      // const listaDeComprasEditada = listaDeCompras.map((compra) => {
-          if (it.activity_completed === 1){
-           
-              //return {...compra, complete: !compra.complete}
-          }else{
-           
-          }
-          //return compra;
-   
-      // setListaDeCompras(listaDeComprasEditada);
-  }
+    // const listaDeComprasEditada = listaDeCompras.map((compra) => {
+    if (it.activity_completed === 1) {
+      //return {...compra, complete: !compra.complete}
+    } else {
+    }
+    //return compra;
 
+    // setListaDeCompras(listaDeComprasEditada);
+  };
 
   return (
     <div className={styles.modalcard}>
       <div className={styles.buttons_card}>
-
         <div className={styles.button_date}>
           <p>Prazo :</p>
           <input className={styles.date} type="date" />
@@ -64,7 +58,6 @@ const TasksModal = () => {
         <button type="button" className={styles.button_save}>
           Salvar Alterações
         </button>
-
       </div>
       <div className={styles.first_card}>
         <h5 className={styles.titulos}>{task.task_name}</h5>
@@ -78,31 +71,30 @@ const TasksModal = () => {
               Editar
             </button>
             <Modal show={showModal} setShowModal={setShowModal}>
-              <EditDescriptionTask task={task}/>
+              <EditDescriptionTask task={task} />
             </Modal>
-
           </div>
           <p className={styles.descricao}>{task.task_description}</p>
         </div>
         <div className={styles.ativblock}>
           <p className={styles.descricaotitle}>Atividades</p>
           <div className={styles.listblock}>
-
-           {Array.isArray(activity) && activity.map((it) =>(
-
-               <div class="form-check">
-               <input
-                 class="form-check-input"
-                 type="checkbox"
-                 value={it.activity_completed}
-                 onClick={() => mudarComplete(it)}
-               ></input>
-               <label class={it.activity_completed == 1  ? 'lista__item--completado' : 'lista__item'}>
-                 {it.activity_description}
-               </label>
-             </div>
-
-            ))}
+            {Array.isArray(activity) &&
+              activity.map((it) => (
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value={it.activity_completed}
+                    onClick={() => mudarComplete(it)}
+                  ></input>
+                  <label
+                    class={it.activity_completed == 1 ? 'lista__item--completado' : 'lista__item'}
+                  >
+                    {it.activity_description}
+                  </label>
+                </div>
+              ))}
           </div>
         </div>
 

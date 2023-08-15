@@ -4,30 +4,28 @@ const NewProjectModal = () => {
   return (
     <div className={styles.card}>
       <p className={styles.title}>Novo Projeto</p>
-      <form>
-        <div className={`mb-3 container-input`}>
-          <input
-            type="text"
-            className="form-control"
-            id="floatingInput"
-            placeholder="Nome do Projeto"
-            required
-          />
-        </div>
-        <div className={`mb-3 container-input`}>
-          <textarea
-            type="text"
-            className="form-control"
-            id="descricao"
-            placeholder="Descrição"
-            rows={5}
-            required
-          ></textarea>
-        </div>
-        <button type="submit" className={styles.button_save}>
-          Salvar
-        </button>
-      </form>
+      <div className={`mb-3 container-input`}>
+        <input
+          type="text"
+          className="form-control"
+          id="floatingInput"
+          placeholder="Nome do Projeto"
+          required
+        />
+      </div>
+      <div className={`mb-3 container-input`}>
+        <textarea
+          type="text"
+          className="form-control"
+          id="descricao"
+          placeholder="Descrição"
+          rows={5}
+          required
+        ></textarea>
+      </div>
+      <button type="submit" className={styles.button_save}>
+        Salvar
+      </button>
     </div>
   );
 };

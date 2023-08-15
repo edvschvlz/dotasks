@@ -1,25 +1,51 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import logoNav from '../../assets/img/logo.svg';
-import user from '../../assets/img/user.png';
+import userpng from '../../assets/img/user.png';
 import styles from './Navbar.module.css';
 import { useState } from 'react';
 import Modal from '../Modal';
 import SettingsModal from '../../Pages/Home/SettingsModal';
 import { useAuth } from '../../contexts/Auth';
+import ShareProject from '../../Pages/Project/ShareProject';
+import axios from 'axios';
 
 function Navbar({ type }) {
   const setType = type;
   const [showModal, setShowModal] = useState(false);
-  const { Logout } = useAuth();
+  const [showModalShare, setShowModalShare] = useState(false);
+  const { user, Logout, token } = useAuth();
+  const { id } = useParams();
   const navigate = useNavigate();
 
   const settings = () => {
     setShowModal(true);
   };
 
+  const share = () => {
+    setShowModalShare(true);
+  };
+
   const handleLogout = () => {
     Logout();
     navigate('/');
+  };
+
+  const exitProject = () => {
+    axios({
+      method: 'delete',
+      url: `http://localhost:5000/users_has_projects?project_id=${id}&user_id=${
+        JSON.parse(user).id
+      }`,
+      headers: {
+        'x-access-token': token,
+      },
+    })
+      .then(() => {
+        navigate('/home');
+      })
+      .catch(() => {
+        return false;
+      });
   };
 
   return (
@@ -31,10 +57,18 @@ function Navbar({ type }) {
       <div className={styles.user_bell_container}>
         {setType && (
           <div className={styles.button_ch}>
-            <button type="button">Sair</button>
-            <button type="button">Compartilhar</button>
+            <button type="button" onClick={exitProject}>
+              Sair
+            </button>
+            <button type="button" onClick={share}>
+              Compartilhar
+            </button>
           </div>
         )}
+
+        <Modal show={showModalShare} setShowModal={setShowModalShare}>
+          <ShareProject show={showModalShare} setShowModal={setShowModalShare} />
+        </Modal>
 
         <i className="bi bi-bell-fill"></i>
 
@@ -45,11 +79,11 @@ function Navbar({ type }) {
             data-bs-toggle="dropdown"
             aria-expanded="false"
           >
-            <img src={user} alt="usuario" />
+            <img src={userpng} alt="usuario" />
           </div>
 
           <Modal show={showModal} setShowModal={setShowModal}>
-            {showModal && <SettingsModal show={showModal} setShowModal={setShowModal} />}
+            <SettingsModal show={showModal} setShowModal={setShowModal} />
           </Modal>
 
           <ul className="dropdown-menu dropdown-menu-end">

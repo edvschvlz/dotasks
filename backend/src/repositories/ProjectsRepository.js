@@ -24,6 +24,10 @@ const save = async (name, description) => {
   return project;
 };
 
+const remove = async (id) => {
+  return await projectsRepository.delete({ id: id });
+};
+
 const findOneBy = async (id) => {
   const project = await projectsRepository.findOneBy({ id: id });
   const columns = await columnsRepository.find({ where: { projects_id: project.id } });
@@ -66,4 +70,4 @@ const findOneBy = async (id) => {
   };
 };
 
-export const ProjectsRepository = { getAll, save, findOneBy };
+export const ProjectsRepository = { getAll, save, findOneBy, remove };
