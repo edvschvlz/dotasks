@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-// import { useRecoilState} from "recoil";
 import axios from 'axios';
 import styles from './TasksModal.module.css';
 import Modal from '../../../Components/Modal';
@@ -11,8 +10,9 @@ const TasksModal = () => {
   const { token } = useAuth();
   const [task, setTask] = useState({});
   const [activity, setActivity] = useState({});
+  const [complete, setComplete] = useState({});
 
-  useEffect(() => {
+  const fetchData = () => {
     axios({
       method: 'get',
       url: `http://localhost:5000/tasks/1`,
@@ -21,34 +21,41 @@ const TasksModal = () => {
         'x-access-token': token, 
       }
     })
-      .then((response) => {
+    .then((response) => {
+      const taskData = response.data;
+      setTask(taskData);
+      setActivity(taskData.activities);
+    })
+    .catch((err) => console.log(err));
+  };
 
-        const taskdata = response.data;
-        console.log(taskdata)
-        const activitiesdata =  taskdata.activities;
-  
-        setTask(taskdata);
-        setActivity(activitiesdata);
-
-      })
-      .catch((err) => console.log(err));
+  useEffect(() => {
+    fetchData();
   }, []);
 
- // const [listaDeCompras, setListaDeCompras] = useRecoilState(listaDeComprasState);
-
+  
   const mudarComplete = (it) => {
-      // const listaDeComprasEditada = listaDeCompras.map((compra) => {
-          if (it.activity_completed === 1){
-           
-              //return {...compra, complete: !compra.complete}
-          }else{
-           
-          }
-          //return compra;
-   
-      // setListaDeCompras(listaDeComprasEditada);
-  }
+    const newCompletedValue = it.activity_completed === 0 ? 1 : 0;
+    
+    setComplete(newCompletedValue === 1);
 
+    axios({
+      method: 'put',
+      url: `http://localhost:5000/activities/${it.activity_id}`,
+      headers: { 
+        'x-access-token': token, 
+      },
+      data: {
+        id: it.activity_id,
+        completed: newCompletedValue,
+      },
+    })
+    .then(() => {
+      fetchData();
+    })
+    .catch((err) => console.log(err));
+  };
+  
 
   return (
     <div className={styles.modalcard}>
@@ -86,24 +93,25 @@ const TasksModal = () => {
         </div>
         <div className={styles.ativblock}>
           <p className={styles.descricaotitle}>Atividades</p>
-          <div className={styles.listblock}>
+          <li className={styles.listblock}>
 
            {Array.isArray(activity) && activity.map((it) =>(
-
+        
                <div class="form-check">
                <input
                  class="form-check-input"
                  type="checkbox"
                  value={it.activity_completed}
+                 checked={it.activity_completed === 1}
                  onClick={() => mudarComplete(it)}
                ></input>
-               <label class={it.activity_completed == 1  ? 'lista__item--completado' : 'lista__item'}>
+               <p className={it.activity_completed === 1 ? 'lista__item--completado' : 'lista__item'}>
                  {it.activity_description}
-               </label>
+               </p>
              </div>
 
             ))}
-          </div>
+          </li>
         </div>
 
         <form className={styles.form_item}>
