@@ -26,8 +26,8 @@ const AuthProvider = ({ children }) => {
     }
   }, []);
 
-  const Login = (auth) => {
-    return axios({
+  const Login = async (auth) => {
+    return await axios({
       method: 'post',
       url: 'http://localhost:5000/users/auth',
       data: auth,

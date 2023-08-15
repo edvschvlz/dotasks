@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './SettingsModal.module.css';
 import { useAuth } from '../../../contexts/Auth';
 import axios from 'axios';
 
-const SettingsModal = ({ showModal, setShowModal }) => {
+const SettingsModal = ({ show, setShowModal }) => {
   const { user, token } = useAuth();
   const userName = JSON.parse(user).name;
   const userEmail = JSON.parse(user).email;
@@ -17,6 +17,15 @@ const SettingsModal = ({ showModal, setShowModal }) => {
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
   const [passwordAgainError, setPasswordAgainError] = useState(false);
+
+  useEffect(() => {
+    setFields({
+      name: userName,
+      email: userEmail,
+      newPassword: '',
+      passwordAgain: '',
+    });
+  }, [show]);
 
   const handleChange = (event) => {
     setFields({ ...fields, [event.target.name]: event.target.value });
@@ -85,8 +94,6 @@ const SettingsModal = ({ showModal, setShowModal }) => {
       setPasswordError(true);
       setPasswordAgainError(true);
     }
-
-    console.log(fields);
 
     axios({
       method: 'put',

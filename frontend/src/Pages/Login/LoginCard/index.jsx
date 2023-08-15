@@ -58,7 +58,7 @@ const LoginCard = () => {
 
     const timer = setTimeout(async () => {
       const isValid = await Login(fields);
-
+      console.log(isValid);
       if (!isValid) {
         setEmailError(true);
         setPasswordError(true);
@@ -105,7 +105,7 @@ const LoginCard = () => {
           {loading ? <img src={loadingGif} alt="" /> : 'Entrar'}
         </button>
       </form>
-      <Link to="/change-password-1" className={styles.link}>
+      <Link to="/changepassword" className={styles.link}>
         Esqueceu sua senha?
       </Link>
       <Link to="/register" className={styles.button_register}>

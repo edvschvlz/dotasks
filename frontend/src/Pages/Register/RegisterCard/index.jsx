@@ -80,51 +80,49 @@ const RegisterCard = () => {
   return (
     <div className={styles.card}>
       <p className={styles.title}>Nova Conta</p>
-      <form>
-        <div className={`mb-3 container-input`}>
-          <input
-            type="text"
-            name="name"
-            ref={name}
-            className="form-control"
-            placeholder="Nome"
-            required
-          />
-        </div>
-        <div className={`mb-3 container-input`}>
-          <input
-            type="email"
-            className="form-control"
-            ref={email}
-            name="email"
-            placeholder="Email"
-            required
-          />
-        </div>
-        <div className={`mb-3 container-input`}>
-          <input
-            type="password"
-            className="form-control"
-            ref={password}
-            name="password"
-            placeholder="Senha"
-            required
-          />
-        </div>
-        <div className={`mb-3 container-input`}>
-          <input
-            type="password"
-            className="form-control"
-            ref={repeatPassword}
-            name="repeatPassword"
-            placeholder="Senha novamente"
-            required
-          />
-        </div>
-        <button type="submit" onClick={handleSubmit} className={styles.button_register}>
-          Registrar
-        </button>
-      </form>
+      <div className={`mb-3 container-input`}>
+        <input
+          type="text"
+          name="name"
+          ref={name}
+          className="form-control"
+          placeholder="Nome"
+          required
+        />
+      </div>
+      <div className={`mb-3 container-input`}>
+        <input
+          type="email"
+          className="form-control"
+          ref={email}
+          name="email"
+          placeholder="Email"
+          required
+        />
+      </div>
+      <div className={`mb-3 container-input`}>
+        <input
+          type="password"
+          className="form-control"
+          ref={password}
+          name="password"
+          placeholder="Senha"
+          required
+        />
+      </div>
+      <div className={`mb-3 container-input`}>
+        <input
+          type="password"
+          className="form-control"
+          ref={repeatPassword}
+          name="repeatPassword"
+          placeholder="Senha novamente"
+          required
+        />
+      </div>
+      <button type="submit" onClick={handleSubmit} className={styles.button_register}>
+        Registrar
+      </button>
       <Link to="/" className={styles.link}>
         Já possui conta? Clique aqui para fazer login
       </Link>

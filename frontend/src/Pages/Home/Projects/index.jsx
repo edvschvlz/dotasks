@@ -4,7 +4,7 @@ import styles from './Projects.module.css';
 import Modal from '../../../Components/Modal';
 import NewProjectModal from '../NewProjectModal';
 import { useAuth } from '../../../contexts/Auth';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function Projects() {
   let projects = [];
