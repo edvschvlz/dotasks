@@ -1,24 +1,33 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styles from './Column.module.css';
 import Task from './Task';
 import Modal from '../../../Components/Modal';
 import NewTaskModal from '../Column/NewTaskModal';
-import axios from 'axios';
-import { useAuth } from '../../../contexts/Auth';
+import { BiTrash } from 'react-icons/bi';
+import DeleteColumnModal from './DeleteColumnModal';
 
 //COMPONENTE COM DUAS FUNÇÕES PODENDO SER PARA CRIAÇÃO
 //DE UMA NOVA COLUNA OU JÁ PARA ADIÇÃO DE TAREFAS
 
 const Column = ({ column, id, name }) => {
   const [showModal, setShowModal] = useState(false);
+  const [showDelete, setShowDelete] = useState(false);
+
+  console.log('column', column);
 
   return (
     <div className={styles.column}>
-      <h1>{name}</h1>
+      <div className={styles.header}>
+        <h1>{name}</h1>
+        <BiTrash size={18} className={styles.trash} onClick={() => setShowDelete(true)} />
+      </div>
+      <Modal show={showDelete} setShowModal={setShowDelete}>
+        <DeleteColumnModal id={id} setShowDelete={setShowDelete} />
+      </Modal>
       <div className={styles.tasks}>
         {column.tasks &&
           column.tasks.map((task) => (
-            <Task name={task.task_name} importance={task.task_importance} />
+            <Task id={task.task_id} name={task.task_name} importance={task.task_importance} />
           ))}
         <div className={styles.add_task} onClick={() => setShowModal(true)}>
           <span>+ NOVA TAREFA</span>

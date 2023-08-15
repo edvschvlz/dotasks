@@ -15,6 +15,21 @@
   }
 }
 
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.trash {
+  cursor: pointer;
+  color: var(--cinza-claro);
+  transition: all 0.1s ease-in-out;
+}
+
+.trash:hover {
+  color: black;
+}
+
 .tasks {
   display: flex;
   width: 100%;
