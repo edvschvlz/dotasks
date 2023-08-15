@@ -10,9 +10,10 @@ export const getAll = async (request, response) => {
   }
 };
 
-export const getById = async (request, response) => {
+export const findOneById = async (request, response) => {
   try {
-    const task = await TasksRepository.getById(request.body.id);
+    const { id } = request.params;
+    const task = await TasksRepository.findOneById(id);
 
     return response.status(200).send(task);
   } catch (err) {
@@ -34,9 +35,9 @@ export const getTaskEditors = async (request, response) => {
 
 export const save = async (request, response) => {
   try {
-    const { name, description, deadline, importance, columns_id } = request.body;
+    const { name, importance, columns_id } = request.body;
 
-    const task = await TasksRepository.save(name, description, deadline, importance, columns_id);
+    const task = await TasksRepository.save(name, importance, columns_id);
 
     return response.status(201).send(task);
   } catch (err) {

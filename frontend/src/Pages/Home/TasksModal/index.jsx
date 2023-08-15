@@ -1,17 +1,16 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
+// import { useRecoilState} from "recoil";
 import axios from 'axios';
 import styles from './TasksModal.module.css';
 import Modal from '../../../Components/Modal';
-import EditDescriptionTask from './InsideModals/EditDescriptionTask';
-import ViewEditors from './InsideModals/ViewEditors';
+import EditDescriptionTask from './EditDescriptionTask';
 import { useAuth } from '../../../contexts/Auth';
 
 const TasksModal = () => {
   const [showModal, setShowModal] = useState(false);
-  const [showModalView, setShowModalView] = useState(false);
   const { token } = useAuth();
   const [task, setTask] = useState({});
-  const text = useRef('');
+  const [activity, setActivity] = useState({});
 
   useEffect(() => {
     axios({
@@ -19,35 +18,36 @@ const TasksModal = () => {
       url: `http://localhost:5000/tasks/1`,
       responseType: 'json',
       headers: {
-        Authorization: token,
+        'x-access-token': token,
       },
     })
       .then((response) => {
-        const taskdata = response.data[0];
+        const taskdata = response.data;
+        console.log(taskdata);
+        const activitiesdata = taskdata.activities;
 
         setTask(taskdata);
+        setActivity(activitiesdata);
       })
       .catch((err) => console.log(err));
   }, []);
 
-  const viewEditors = () => {
-    setShowModalView(true);
-  };
+  // const [listaDeCompras, setListaDeCompras] = useRecoilState(listaDeComprasState);
 
-  const editDescriptionTask = () => {
-    setShowModal(true);
+  const mudarComplete = (it) => {
+    // const listaDeComprasEditada = listaDeCompras.map((compra) => {
+    if (it.activity_completed === 1) {
+      //return {...compra, complete: !compra.complete}
+    } else {
+    }
+    //return compra;
+
+    // setListaDeCompras(listaDeComprasEditada);
   };
 
   return (
     <div className={styles.modalcard}>
       <div className={styles.buttons_card}>
-        <button type="button" onClick={viewEditors} className={styles.button_editors}>
-          Editores
-        </button>
-        <Modal show={showModalView} setShowModal={setShowModalView}>
-          <ViewEditors />
-        </Modal>
-
         <div className={styles.button_date}>
           <p>Prazo :</p>
           <input className={styles.date} type="date" />
@@ -55,39 +55,46 @@ const TasksModal = () => {
         <button type="button" className={styles.button_exclude}>
           Excluir
         </button>
+        <button type="button" className={styles.button_save}>
+          Salvar Alterações
+        </button>
       </div>
-
       <div className={styles.first_card}>
-        <h5 className={styles.titulos}>{task.name}</h5>
-        <p className={styles.titulo_second}>Nome da Coluna</p>
+        <h5 className={styles.titulos}>{task.task_name}</h5>
+        <p className={styles.titulo_second}>{task.column_name}</p>
 
         <div className={styles.descblock}>
           <div className={styles.desctitle}>
             <i class="bi bi-list"></i>
             <p className={styles.descricaotitle}>Descrição</p>
-            <button type="button" onClick={editDescriptionTask} className={styles.editbutton}>
+            <button type="button" onClick={() => setShowModal(true)} className={styles.editbutton}>
               Editar
             </button>
             <Modal show={showModal} setShowModal={setShowModal}>
-              <EditDescriptionTask />
+              <EditDescriptionTask task={task} />
             </Modal>
           </div>
-          <p className={styles.descricao}>{task.description}</p>
+          <p className={styles.descricao}>{task.task_description}</p>
         </div>
         <div className={styles.ativblock}>
           <p className={styles.descricaotitle}>Atividades</p>
           <div className={styles.listblock}>
-            <div class="form-check">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                value=""
-                id="flexCheckDefault"
-              ></input>
-              <label class="form-check-label" htmlFor="flexCheckDefault">
-                Pesquisar grupos de atividades que façam adoleta vendados
-              </label>
-            </div>
+            {Array.isArray(activity) &&
+              activity.map((it) => (
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value={it.activity_completed}
+                    onClick={() => mudarComplete(it)}
+                  ></input>
+                  <label
+                    class={it.activity_completed == 1 ? 'lista__item--completado' : 'lista__item'}
+                  >
+                    {it.activity_description}
+                  </label>
+                </div>
+              ))}
           </div>
         </div>
 

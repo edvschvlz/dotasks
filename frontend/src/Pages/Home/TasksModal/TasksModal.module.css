@@ -201,8 +201,8 @@
   justify-content: center;
 }
 
-.button_editors {
-  background-color: var(--cinza-medio);
+.button_save{
+  background-color: var(--verde);
   height: 2em;
   width: 100%;
   display: flex;
@@ -214,6 +214,7 @@
   transition: all 0.1s ease-in-out;
   text-align: end;
   margin-bottom: 2em;
+  margin-top: 22em;
   text-transform: uppercase;
   align-items: center;
   justify-content: center;
@@ -258,11 +259,19 @@
 .listblock {
   display: flex;
   padding: 0.5em;
-  flex-direction: row;
+  flex-direction: column;
 }
 
-.listblock:hover {
+.form-check:hover {
   display: block;
   background-color: var(--cinza);
   border-radius: 0.3em;
+}
+
+.lista__item {
+  text-decoration: none;  
+}
+
+.lista__item--completado{
+  text-decoration: line-through;  
 }

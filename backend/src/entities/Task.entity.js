@@ -15,6 +15,7 @@ export const TaskEntity = new EntitySchema({
     },
     description: {
       type: 'longtext',
+      default: null,
     },
     deadline: {
       type: 'datetime',
