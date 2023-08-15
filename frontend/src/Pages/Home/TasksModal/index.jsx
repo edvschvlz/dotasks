@@ -7,8 +7,8 @@ import ViewEditors from './InsideModals/ViewEditors';
 import { useAuth } from '../../../contexts/Auth';
 
 const TasksModal = () => {
-  const [showModal, setShowModal] = useState(false)
-  const [showModalView, setShowModalView] = useState(false)
+  const [showModal, setShowModal] = useState(false);
+  const [showModalView, setShowModalView] = useState(false);
   const { token } = useAuth();
   const [task, setTask] = useState({});
   const text = useRef('');
@@ -18,9 +18,9 @@ const TasksModal = () => {
       method: 'get',
       url: `http://localhost:5000/tasks/1`,
       responseType: 'json',
-      headers: { 
-        Authorization: token, 
-      }
+      headers: {
+        Authorization: token,
+      },
     })
       .then((response) => {
         const taskdata = response.data[0];
@@ -28,16 +28,15 @@ const TasksModal = () => {
         setTask(taskdata);
       })
       .catch((err) => console.log(err));
-  },
-   []);
+  }, []);
 
   const viewEditors = () => {
-    setShowModalView(true)
-  }
+    setShowModalView(true);
+  };
 
   const editDescriptionTask = () => {
-    setShowModal(true)
-  }
+    setShowModal(true);
+  };
 
   return (
     <div className={styles.modalcard}>
@@ -46,7 +45,7 @@ const TasksModal = () => {
           Editores
         </button>
         <Modal show={showModalView} setShowModal={setShowModalView}>
-              <ViewEditors />
+          <ViewEditors />
         </Modal>
 
         <div className={styles.button_date}>
@@ -56,8 +55,6 @@ const TasksModal = () => {
         <button type="button" className={styles.button_exclude}>
           Excluir
         </button>
-  
-
       </div>
 
       <div className={styles.first_card}>
@@ -74,7 +71,6 @@ const TasksModal = () => {
             <Modal show={showModal} setShowModal={setShowModal}>
               <EditDescriptionTask />
             </Modal>
-
           </div>
           <p className={styles.descricao}>{task.description}</p>
         </div>
@@ -88,7 +84,7 @@ const TasksModal = () => {
                 value=""
                 id="flexCheckDefault"
               ></input>
-              <label class="form-check-label" for="flexCheckDefault">
+              <label class="form-check-label" htmlFor="flexCheckDefault">
                 Pesquisar grupos de atividades que façam adoleta vendados
               </label>
             </div>

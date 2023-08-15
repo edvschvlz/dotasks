@@ -18,5 +18,10 @@ export const UserEntity = new EntitySchema({
     password: {
       type: 'varchar',
     },
+    token: {
+      type: 'varchar',
+      length: 6,
+      nullable: true,
+    },
   },
 });

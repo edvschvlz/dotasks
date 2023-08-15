@@ -79,6 +79,16 @@
   }
 }
 
+.button_share img {
+  height: 20px;
+  max-width: 20px;
+}
+
+.error {
+  font-size: 0.7em;
+  color: var(--vermelho);
+}
+
 p {
   margin-bottom: 0;
 }
