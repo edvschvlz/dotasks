@@ -6,6 +6,6 @@ const TasksRouter = Router();
 TasksRouter.get('/', getAll);
 TasksRouter.post('/', save);
 TasksRouter.get('/:id', findOneById);
-TasksRouter.get('/getTaskEditors/:id', getTaskEditors)
+TasksRouter.get('/getTaskEditors/:id', getTaskEditors);
 
 export default TasksRouter;

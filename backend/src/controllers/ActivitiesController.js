@@ -40,3 +40,14 @@ export const getByTask = async (request, response) => {
     return response.status(400).send(err.message);
   }
 };
+
+export const updateCheck = async (request, response) => {
+  try {
+    const body = request.body;
+    const activity = await ActivitiesRepository.updateCheck(body.id, body);
+
+    return response.status(200).send(activity);
+  } catch (err) {
+    return response.status(400).send(err.message);
+  }
+};

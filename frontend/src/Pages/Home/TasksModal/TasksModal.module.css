@@ -272,6 +272,6 @@
   text-decoration: none;  
 }
 
-.lista__item--completado{
+.lista__item__completado{
   text-decoration: line-through;  
 }

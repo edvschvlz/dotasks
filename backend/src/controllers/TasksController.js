@@ -44,3 +44,16 @@ export const save = async (request, response) => {
     return response.status(400).send(err.message);
   }
 };
+
+export const update = async (request, response) => {
+  try {
+    const { name, importance, columns_id } = request.body;
+
+    const task = await TasksRepository.save(name, importance, columns_id);
+
+    return response.status(201).send(task);
+  } catch (err) {
+    return response.status(400).send(err.message);
+  }
+};
+

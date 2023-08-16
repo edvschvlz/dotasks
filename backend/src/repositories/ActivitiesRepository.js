@@ -31,4 +31,8 @@ const getByTask = async (tasks_id) => {
   return project;
 };
 
-export const ActivitiesRepository = { getAll, save, getById, getByTask };
+const updateCheck = async (activities_id, activity) => {
+  await activitiesRepository.update({ id: activities_id}, activity)
+}
+
+export const ActivitiesRepository = { getAll, save, getById, getByTask, updateCheck };

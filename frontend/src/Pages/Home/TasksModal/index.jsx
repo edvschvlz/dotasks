@@ -12,16 +12,16 @@ const TasksModal = () => {
   const [activity, setActivity] = useState({});
   const [complete, setComplete] = useState({});
 
+//---Pega info task---
   const fetchData = () => {
     axios({
       method: 'get',
       url: `http://localhost:5000/tasks/1`,
       responseType: 'json',
-      headers: {
-        'x-access-token': token,
+      headers: { 
+        'x-access-token': token, 
       },
     })
-
     .then((response) => {
       const taskData = response.data;
       setTask(taskData);
@@ -34,7 +34,8 @@ const TasksModal = () => {
     fetchData();
   }, []);
 
-  
+
+//---Atualiza as atividades---
   const mudarComplete = (it) => {
     const newCompletedValue = it.activity_completed === 0 ? 1 : 0;
     
@@ -56,11 +57,13 @@ const TasksModal = () => {
     })
     .catch((err) => console.log(err));
   };
- 
 
+  
+//---HTML---
   return (
     <div className={styles.modalcard}>
       <div className={styles.buttons_card}>
+
         <div className={styles.button_date}>
           <p>Prazo :</p>
           <input className={styles.date} type="date" />
@@ -71,6 +74,7 @@ const TasksModal = () => {
         <button type="button" className={styles.button_save}>
           Salvar Alterações
         </button>
+
       </div>
       <div className={styles.first_card}>
         <h5 className={styles.titulos}>{task.task_name}</h5>
@@ -86,13 +90,13 @@ const TasksModal = () => {
             <Modal show={showModal} setShowModal={setShowModal}>
               <EditDescriptionTask task={task} />
             </Modal>
+ 
           </div>
           <p className={styles.descricao}>{task.task_description}</p>
         </div>
         <div className={styles.ativblock}>
           <p className={styles.descricaotitle}>Atividades</p>
-
-          <li className={styles.listblock}>
+          <div className={styles.listblock}>
 
            {Array.isArray(activity) && activity.map((it) =>(
         
@@ -104,13 +108,13 @@ const TasksModal = () => {
                  checked={it.activity_completed === 1}
                  onClick={() => mudarComplete(it)}
                ></input>
-               <p className={it.activity_completed === 1 ? 'lista__item--completado' : 'lista__item'}>
+               <p className={it.activity_completed === 1 ? 'lista__item__completado' : 'lista__item'}>
                  {it.activity_description}
                </p>
              </div>
 
             ))}
-          </li>
+          </div>
         </div>
 
         <form className={styles.form_item}>
