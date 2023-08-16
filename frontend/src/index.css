@@ -10,12 +10,12 @@ body {
 }
 
 :root {
-  --branco: #FFFFFF;
-  --cinza: #F1F1F1;
-  --cinza-medio: #B7B7B7;
-  --azul: #5686E1;
-  --verde: #91C141;
-  --vermelho: #CF1B1B;
-  --amarelo: #F9CC2E;
+  --branco: #ffffff;
+  --cinza: #f1f1f1;
+  --cinza-claro: #b6b6b6;
+  --cinza-medio: #b7b7b7;
+  --azul: #5686e1;
+  --verde: #91c141;
+  --vermelho: #cf1b1b;
+  --amarelo: #f9cc2e;
 }
-  
