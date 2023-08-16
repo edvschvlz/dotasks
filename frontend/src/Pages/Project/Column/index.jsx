@@ -3,7 +3,7 @@ import styles from './Column.module.css';
 import Task from './Task';
 import Modal from '../../../Components/Modal';
 import NewTaskModal from '../Column/NewTaskModal';
-import { BiTrash } from 'react-icons/bi';
+import { BiTrash, BiSave } from 'react-icons/bi';
 import DeleteColumnModal from './DeleteColumnModal';
 
 //COMPONENTE COM DUAS FUNÇÕES PODENDO SER PARA CRIAÇÃO
@@ -12,14 +12,20 @@ import DeleteColumnModal from './DeleteColumnModal';
 const Column = ({ column, id, name }) => {
   const [showModal, setShowModal] = useState(false);
   const [showDelete, setShowDelete] = useState(false);
-
-  console.log('column', column);
+  const [nameColumn, setNameColumn] = useState(name);
+  const [editName, setEditName] = useState(false);
 
   return (
     <div className={styles.column}>
       <div className={styles.header}>
-        <h1>{name}</h1>
-        <BiTrash size={18} className={styles.trash} onClick={() => setShowDelete(true)} />
+        {!editName && <h1 onClick={() => setEditName(true)}>{nameColumn}</h1>}
+        {editName && (
+          <div className={styles.edit}>
+            <input type="text" value={nameColumn} />
+            <BiSave size={20} />
+          </div>
+        )}
+        <BiTrash size={20} className={styles.icon} onClick={() => setShowDelete(true)} />
       </div>
       <Modal show={showDelete} setShowModal={setShowDelete}>
         <DeleteColumnModal id={id} setShowDelete={setShowDelete} />

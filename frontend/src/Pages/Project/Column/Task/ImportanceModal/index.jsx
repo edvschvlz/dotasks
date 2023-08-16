@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import styles from './ImportanceModal.module.css';
+import { useAuth } from '../../../../../contexts/Auth';
 import axios from 'axios';
 
 const ImportanceModal = ({ id, setShowModal }) => {
@@ -8,17 +9,17 @@ const ImportanceModal = ({ id, setShowModal }) => {
 
   const handleConfirm = () => {
     axios({
-      method: 'delete',
+      method: 'put',
       url: `http://localhost:5000/tasks/${id}`,
       headers: {
         'x-access-token': token,
       },
-      responseType: 'json',
-    })
-      .then(() => {
-        setShowModal(false);
-      })
-      .catch((err) => console.log(err));
+      data: {
+        importance: importance,
+      },
+    }).then(() => {
+      setShowModal(false);
+    });
   };
 
   return (

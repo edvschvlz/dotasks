@@ -47,9 +47,10 @@ export const save = async (request, response) => {
 
 export const update = async (request, response) => {
   try {
-    const { id } = request.body;
+    const { id } = request.params;
+    const { importance } = request.body;
 
-    const task = await TasksRepository.update(id);
+    const task = await TasksRepository.update(id, importance);
 
     return response.status(201).send(task);
   } catch (err) {

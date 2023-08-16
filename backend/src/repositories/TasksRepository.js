@@ -48,8 +48,8 @@ const findOneById = async (id) => {
   };
 };
 
-const update = async (id) => {
-  console.log(id);
+const update = async (id, importance) => {
+  await tasksRepository.update({ id: id }, { importance: importance });
 };
 
 export const TasksRepository = { getAll, save, findOneById, update };
