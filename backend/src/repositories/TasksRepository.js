@@ -23,7 +23,6 @@ const save = async (name, importance, columns_id) => {
   return task;
 };
 
-
 const findOneById = async (id) => {
   const tasks = await tasksRepository.findOneBy({ id: id });
   const columns = await columnsRepository.findOneBy({ id: tasks.columns_id });
@@ -36,7 +35,7 @@ const findOneById = async (id) => {
       activity_description: activity.description,
       activity_completed: activity.completed,
     });
-  };
+  }
 
   return {
     task_id: tasks.id,
@@ -44,9 +43,13 @@ const findOneById = async (id) => {
     task_description: tasks.description,
     task_deadline: tasks.deadline,
     task_importance: tasks.importance,
-    column_name:  columns.name,
+    column_name: columns.name,
     activities: activitiesJSON,
   };
 };
 
-export const TasksRepository = { getAll, save, findOneById };
+const update = async (id, importance) => {
+  await tasksRepository.update({ id: id }, { importance: importance });
+};
+
+export const TasksRepository = { getAll, save, findOneById, update };

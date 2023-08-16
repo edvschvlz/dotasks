@@ -8,5 +8,7 @@ ActivitiesRouter.get('/', getAll);
 ActivitiesRouter.post('/', save);
 ActivitiesRouter.get('/:id', getByTask);
 ActivitiesRouter.put('/:id', updateCheck);
+// ActivitiesRouter.delete('/:id', deleteBy);
+
 
 export default ActivitiesRouter;

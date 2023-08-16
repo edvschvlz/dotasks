@@ -9,7 +9,7 @@ const getAll = async () => {
   return projects;
 };
 
-const save = async (name, description) => {
+const save = async (description) => {
   const project = await activitiesRepository.save({
     description: description,
     completed: completed,
@@ -33,6 +33,11 @@ const getByTask = async (tasks_id) => {
 
 const updateCheck = async (activities_id, activity) => {
   await activitiesRepository.update({ id: activities_id}, activity)
-}
+};
 
-export const ActivitiesRepository = { getAll, save, getById, getByTask, updateCheck };
+const deleteBy = async (id) => {
+  await activitiesRepository.delete({ id: id });
+};
+
+export const ActivitiesRepository = { getAll, save, getById, getByTask, deleteBy, updateCheck };
+
