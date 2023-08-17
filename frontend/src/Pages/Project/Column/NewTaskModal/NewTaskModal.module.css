@@ -10,11 +10,13 @@
   align-items: center;
   & form {
     width: 100%;
+    text-align: center;
   }
 }
 
 .title {
   margin-bottom: 10px;
+  font-size: 1.2em;
 }
 
 .container-input {
@@ -43,6 +45,9 @@
 
 .container_importance {
   padding-bottom: 1em;
+  & select {
+    width: 200px;
+  }
 }
 
 .label_importance {

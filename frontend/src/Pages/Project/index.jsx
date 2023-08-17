@@ -29,8 +29,6 @@ const Project = () => {
       .catch((err) => console.log(err));
   }, []);
 
-  console.log('columns', columns);
-
   return (
     <>
       <Navbar type={true} />

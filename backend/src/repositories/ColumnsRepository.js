@@ -49,4 +49,8 @@ const deleteBy = async (id) => {
   await columnsRepository.delete({ id: id });
 };
 
-export const ColumnsRepository = { getAll, save, findOneBy, deleteBy };
+const update = async (id, name) => {
+  await columnsRepository.update({ id: id }, { name: name });
+};
+
+export const ColumnsRepository = { getAll, save, findOneBy, deleteBy, update };
