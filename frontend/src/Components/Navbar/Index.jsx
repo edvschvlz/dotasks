@@ -70,8 +70,6 @@ function Navbar({ type }) {
           <ShareProject show={showModalShare} setShowModal={setShowModalShare} />
         </Modal>
 
-        <i className="bi bi-bell-fill"></i>
-
         <div className="dropdown">
           <div
             className={styles.user_container}

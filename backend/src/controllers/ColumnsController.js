@@ -45,3 +45,16 @@ export const deleteBy = async (request, response) => {
     return response.status(400).send(err.message);
   }
 };
+
+export const update = async (request, response) => {
+  try {
+    const { id } = request.params;
+    const { name } = request.body;
+
+    const column = await ColumnsRepository.update(id, name);
+
+    return response.status(201).send(column);
+  } catch (err) {
+    return response.status(400).send(err.message);
+  }
+};
