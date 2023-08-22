@@ -13,7 +13,7 @@ const getAllByUserId = async (id) => {
 
   let projects = [];
   for (const project of user_has_projects) {
-    projects.push(await projectsRepository.find({ where: { id: project.projects_id } }));
+    projects.push(await projectsRepository.find({ id: project.projects_id }));
   }
 
   return projects.flat(1);

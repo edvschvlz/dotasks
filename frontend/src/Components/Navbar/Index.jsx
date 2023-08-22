@@ -1,4 +1,4 @@
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import logoNav from '../../assets/img/logo.svg';
 import userpng from '../../assets/img/user.png';
 import styles from './Navbar.module.css';
@@ -85,8 +85,7 @@ function Navbar({ type }) {
           </Modal>
 
           <ul className="dropdown-menu dropdown-menu-end">
-            <li className="dropdown-item">
-              <Link to={'/home'} />
+            <li className="dropdown-item" onClick={() => navigate('/home')}>
               Home
             </li>
             <li className="dropdown-item" onClick={settings}>
