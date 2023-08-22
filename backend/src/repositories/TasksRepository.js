@@ -23,6 +23,10 @@ const save = async (name, importance, columns_id) => {
   return task;
 };
 
+const updatePrazo = async (id, deadline) => {
+  await tasksRepository.update({ id: id }, { deadline: deadline });
+};
+
 const findOneById = async (id) => {
   const tasks = await tasksRepository.findOneBy({ id: id });
   const columns = await columnsRepository.findOneBy({ id: tasks.columns_id });
@@ -52,4 +56,17 @@ const update = async (id, importance) => {
   await tasksRepository.update({ id: id }, { importance: importance });
 };
 
-export const TasksRepository = { getAll, save, findOneById, update };
+const updateAll = async (id, importance , description, deadline, name) => {
+  await tasksRepository.update({ id: id }, { importance: importance }, {description:description}, {deadline:deadline}, {name:name});
+};
+
+const deleteBy = async (id) => {
+  const activities = await activitiesRepository.getById(element.id);
+  for (const element of activities) {
+    activities.map((ativity) => activitiesRepository.deleteBy(ativity.id));
+  }
+  await tasksRepository.delete({ id: id});
+};
+
+
+export const TasksRepository = { getAll, save, findOneById, update, updateAll };
