@@ -4,7 +4,7 @@ export const getAll = async (request, response) => {
   try {
     const activity = await ActivitiesRepository.getAll();
 
-    return response.status(200).send(tasks);
+    return response.status(200).send(activity);
   } catch (err) {
     return response.status(400).send(err.message);
   }
@@ -12,9 +12,8 @@ export const getAll = async (request, response) => {
 
 export const save = async (request, response) => {
   try {
-    const { description, completed, task_id} = request.body;
-    const activity = await ActivitiesRepository.save( description, completed, task_id);
-
+    const activity = await ActivitiesRepository.save( request.body.description, request.body.completed, request.body.task_id);
+console.log(activity);
     return response.status(201).send(activity);
   } catch (err) {
     return response.status(400).send(err.message);

@@ -21,23 +21,23 @@ export const findOneById = async (request, response) => {
   }
 };
 
-export const getTaskEditors = async (request, response) => {
-  try {
-    const task_id = await TasksRepository.getById(request.body.id);
-    const id_user = await UsersHasTasksRepository.getUserByTask(task_id);
-    const users = await UsersRepository.getById(id_user);
-
-    return response.status(200).send(users);
-  } catch (err) {
-    return response.status(400).send(err.message);
-  }
-};
-
 export const save = async (request, response) => {
   try {
     const { name, importance, columns_id } = request.body;
 
     const task = await TasksRepository.save(name, importance, columns_id);
+
+    return response.status(201).send(task);
+  } catch (err) {
+    return response.status(400).send(err.message);
+  }
+};
+
+export const updatePrazo = async (request, response) => {
+  try {
+    const { id, deadline} = request.body.deadline;
+
+    const task = await TasksRepository.updatePrazo(id, deadline);
 
     return response.status(201).send(task);
   } catch (err) {
@@ -53,6 +53,34 @@ export const update = async (request, response) => {
     const task = await TasksRepository.update(id, importance);
 
     return response.status(201).send(task);
+  } catch (err) {
+    return response.status(400).send(err.message);
+  }
+};
+  
+export const updateAll = async (request, response) => {
+  try {
+    const taskBody  = request.body;
+    console.log("OI")
+    console.log(taskBody);//VARIAVEL UNDEFINED
+    const task = await TasksRepository.updateAll(taskBody.id, taskBody.importance, taskBody.description, taskBody.deadline, taskBody.name);
+    
+    
+   
+    return response.status(201).send(task);
+  } catch (err) {
+    return response.status(400).send(err.message);
+  }
+};
+
+
+export const deleteBy = async (request, response) => {
+  try {
+    const { id } = request.params;
+
+    await TasksRepository.deleteBy(id);
+
+    return response.status(204).send('Success!');
   } catch (err) {
     return response.status(400).send(err.message);
   }
