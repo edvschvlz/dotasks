@@ -25,7 +25,7 @@ function Projects() {
     })
       .then((response) => {
         const data = response.data;
-
+        console.log('data', data);
         projects = data;
         setProjectsCard(projects);
       })
@@ -59,7 +59,7 @@ function Projects() {
         <div className={styles.text_home}>Seus Projetos</div>
         <div className={styles.search_button}>
           <Modal show={showModal} setShowModal={setShowModal}>
-            <NewProjectModal />
+            <NewProjectModal setShowModal={setShowModal} />
           </Modal>
 
           <button className={styles.btn_newhome} onClick={newProject}>

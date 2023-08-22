@@ -5,11 +5,10 @@ import axios from 'axios';
 
 const SettingsModal = ({ show, setShowModal }) => {
   const { user, token } = useAuth();
-  const userName = JSON.parse(user).name;
-  const userEmail = JSON.parse(user).email;
+
   const [fields, setFields] = useState({
-    name: userName,
-    email: userEmail,
+    name: user.name,
+    email: user.email,
     newPassword: '',
     passwordAgain: '',
   });
@@ -20,8 +19,8 @@ const SettingsModal = ({ show, setShowModal }) => {
 
   useEffect(() => {
     setFields({
-      name: userName,
-      email: userEmail,
+      name: user.name,
+      email: user.email,
       newPassword: '',
       passwordAgain: '',
     });
