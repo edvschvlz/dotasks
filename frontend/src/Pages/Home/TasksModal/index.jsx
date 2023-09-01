@@ -1,57 +1,119 @@
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 import styles from './TasksModal.module.css';
+import Modal from '../../../Components/Modal';
+import EditDescriptionTask from './EditDescriptionTask';
+import { useAuth } from '../../../contexts/Auth';
 
 const TasksModal = () => {
+  const [showModal, setShowModal] = useState(false);
+  const { token } = useAuth();
+  const [task, setTask] = useState({});
+  const [activity, setActivity] = useState({});
+  const [complete, setComplete] = useState({});
+
+//---Pega info task---
+  const fetchData = () => {
+    axios({
+      method: 'get',
+      url: `http://localhost:5000/tasks/1`,
+      responseType: 'json',
+      headers: { 
+        'x-access-token': token, 
+      },
+    })
+    .then((response) => {
+      const taskData = response.data;
+      setTask(taskData);
+      setActivity(taskData.activities);
+    })
+    .catch((err) => console.log(err));
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+
+//---Atualiza as atividades---
+  const mudarComplete = (it) => {
+    const newCompletedValue = it.activity_completed === 0 ? 1 : 0;
+    
+    setComplete(newCompletedValue === 1);
+
+    axios({
+      method: 'put',
+      url: `http://localhost:5000/activities/${it.activity_id}`,
+      headers: { 
+        'x-access-token': token, 
+      },
+      data: {
+        id: it.activity_id,
+        completed: newCompletedValue,
+      },
+    })
+    .then(() => {
+      fetchData();
+    })
+    .catch((err) => console.log(err));
+  };
+
+  
+//---HTML---
   return (
     <div className={styles.modalcard}>
       <div className={styles.buttons_card}>
-        <button type="button" className={styles.button_exclude}>
-          Excluir
-        </button>
-        <button type="button" className={styles.button_exit}>
-          Sair
-        </button>
-        <button type="button" className={styles.button_editors}>
-          Editores
-        </button>
 
         <div className={styles.button_date}>
           <p>Prazo :</p>
           <input className={styles.date} type="date" />
-          <button type="button" className={styles.button_date_define}>
-            Definir
-          </button>
         </div>
-      </div>
+        <button type="button" className={styles.button_exclude}>
+          Excluir
+        </button>
+        <button type="button" className={styles.button_save}>
+          Salvar Alterações
+        </button>
 
+      </div>
       <div className={styles.first_card}>
-        <h5 className={styles.titulos}>Nome da tarefa</h5>
-        <p className={styles.titulo_second}>Nome da Coluna</p>
+        <h5 className={styles.titulos}>{task.task_name}</h5>
+        <p className={styles.titulo_second}>{task.column_name}</p>
 
         <div className={styles.descblock}>
           <div className={styles.desctitle}>
             <i class="bi bi-list"></i>
             <p className={styles.descricaotitle}>Descrição</p>
-            <button type="button" className={styles.editbutton}>
+            <button type="button" onClick={() => setShowModal(true)} className={styles.editbutton}>
               Editar
             </button>
+            <Modal show={showModal} setShowModal={setShowModal}>
+              <EditDescriptionTask task={task} />
+            </Modal>
+ 
           </div>
-          <p className={styles.descricao}>Oi! Aqui está uma descrição bem bonita S2</p>
+          <p className={styles.descricao}>{task.task_description}</p>
         </div>
-
         <div className={styles.ativblock}>
           <p className={styles.descricaotitle}>Atividades</p>
           <div className={styles.listblock}>
-            <div class="form-check">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                value=""
-                id="flexCheckDefault"
-              ></input>
-              <label class="form-check-label" for="flexCheckDefault">
-                Pesquisar grupos de atividades que façam adoleta vendados
-              </label>
-            </div>
+
+           {Array.isArray(activity) && activity.map((it) =>(
+        
+               <div class="form-check">
+               <input
+                 class="form-check-input"
+                 type="checkbox"
+                 value={it.activity_completed}
+                 checked={it.activity_completed === 1}
+                 onClick={() => mudarComplete(it)}
+               ></input>
+               <p className={it.activity_completed === 1 ? 'lista__item__completado' : 'lista__item'}>
+                 {it.activity_description}
+               </p>
+             </div>
+
+            ))}
           </div>
         </div>
 
@@ -61,7 +123,7 @@ const TasksModal = () => {
               type="text"
               className="form-control"
               id="floatingInput"
-              placeholder="Nome do Projeto"
+              placeholder="Nome da Atividade"
               required
             />
           </div>

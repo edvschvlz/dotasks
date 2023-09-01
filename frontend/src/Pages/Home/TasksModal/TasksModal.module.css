@@ -177,6 +177,7 @@
   transition: all 0.1s ease-in-out;
   text-align: end;
   margin-bottom: 2em;
+  margin-top: 2em;
   text-transform: uppercase;
   align-items: center;
   justify-content: center;
@@ -200,9 +201,9 @@
   justify-content: center;
 }
 
-.button_editors {
-  background-color: var(--cinza-medio);
-  height: 2em;
+.button_save{
+  background-color: var(--verde);
+  height: 3em;
   width: 100%;
   display: flex;
   border: none;
@@ -213,6 +214,7 @@
   transition: all 0.1s ease-in-out;
   text-align: end;
   margin-bottom: 2em;
+  margin-top: 23em;
   text-transform: uppercase;
   align-items: center;
   justify-content: center;
@@ -235,7 +237,7 @@
 }
 
 .date {
-  margin: 10% 0%;
+  margin: 6% 0%;
 }
 
 .button_date_define {
@@ -257,11 +259,19 @@
 .listblock {
   display: flex;
   padding: 0.5em;
-  flex-direction: row;
+  flex-direction: column;
 }
 
-.listblock:hover {
+.form-check:hover {
   display: block;
   background-color: var(--cinza);
   border-radius: 0.3em;
+}
+
+.lista__item {
+  text-decoration: none;  
+}
+
+.lista__item__completado{
+  text-decoration: line-through;  
 }

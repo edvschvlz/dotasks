@@ -1,56 +1,47 @@
-import React from 'react';
-
+import React, { useState } from 'react';
 import styles from './Column.module.css';
-
 import Task from './Task';
-
-import { GrClose } from 'react-icons/gr';
+import Modal from '../../../Components/Modal';
+import NewTaskModal from '../Column/NewTaskModal';
+import { BiTrash, BiPencil } from 'react-icons/bi';
+import DeleteColumnModal from './DeleteColumnModal';
+import EditColumnModal from './EditColumnModal';
 
 //COMPONENTE COM DUAS FUNÇÕES PODENDO SER PARA CRIAÇÃO
 //DE UMA NOVA COLUNA OU JÁ PARA ADIÇÃO DE TAREFAS
 
-const Column = ({ title }) => {
+const Column = ({ column, id, name }) => {
+  const [showModal, setShowModal] = useState(false);
+  const [showEdit, setShowEdit] = useState(false);
+  const [showDelete, setShowDelete] = useState(false);
+  const [nameColumn, setNameColumn] = useState(name);
+
   return (
     <div className={styles.column}>
-      <h1>Título Coluna</h1>
-      <div className={styles.tasks}>
-        <Task />
-        <div className={styles.create}>
-          <div className={styles.title_importance}>
-            <input
-              type="text"
-              id="input-task"
-              className="form-control"
-              placeholder="Insira o nome da tarefa..."
-              required
-            />
-            <span className={`${styles.importance} ${styles.green}`}></span>
-          </div>
-          <div className={styles.buttons}>
-            <button type="submit">Adicionar tarefa</button>
-            <GrClose className={styles.close} />
-          </div>
+      <div className={styles.header}>
+        <h1>{nameColumn}</h1>
+        <div className={styles.icons}>
+          <BiPencil size={20} className={styles.icon} onClick={() => setShowEdit(true)} />
+          <BiTrash size={20} className={styles.icon} onClick={() => setShowDelete(true)} />
         </div>
-
-        {/* 
-          <div className={styles.create}>
-            <input
-              type="text"
-              id="input-task"
-              className="form-control"
-              placeholder="Insira o título da coluna..."
-              required
-            />
-            <div className={styles.buttons}>
-              <button type="submit">Adicionar coluna</button>
-              <GrClose className={styles.close} />
-            </div>
-          </div>
-        */}
-
-        <div className={styles.add_task}>
+      </div>
+      <Modal show={showEdit} setShowModal={setShowEdit}>
+        <EditColumnModal id={id} name={name} setShowEdit={setShowEdit} />
+      </Modal>
+      <Modal show={showDelete} setShowModal={setShowDelete}>
+        <DeleteColumnModal id={id} setShowDelete={setShowDelete} />
+      </Modal>
+      <div className={styles.tasks}>
+        {column.tasks &&
+          column.tasks.map((task) => (
+            <Task id={task.task_id} name={task.task_name} importance={task.task_importance} />
+          ))}
+        <div className={styles.add_task} onClick={() => setShowModal(true)}>
           <span>+ NOVA TAREFA</span>
         </div>
+        <Modal show={showModal} setShowModal={setShowModal}>
+          <NewTaskModal column={id} setShowModal={setShowModal} />
+        </Modal>
       </div>
     </div>
   );

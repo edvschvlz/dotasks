@@ -7,7 +7,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "node -r dotenv/config src/server.js",
-    "dev": "nodemon --watch 'src/*/' --exec node -r dotenv/config src/server.js"
+    "dev": "nodemon --watch src --exec node -r dotenv/config src/server.js"
   },
   "author": "Eduardo Schulz, Paula Rossini, Luiza Boaventura",
   "license": "ISC",
@@ -16,7 +16,9 @@
     "cors": "^2.8.5",
     "dotenv": "^16.1.4",
     "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.1",
     "mysql": "^2.18.1",
+    "nodemailer": "^6.9.4",
     "typeorm": "^0.3.16"
   },
   "devDependencies": {

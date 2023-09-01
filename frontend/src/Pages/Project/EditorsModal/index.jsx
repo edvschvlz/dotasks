@@ -10,23 +10,21 @@ const EditorsModal = () => {
         <p>Editores</p>
       </div>
       <div className={styles.container}>
-        <form>
-          <div className={`mb-3 container-input`}>
-            <input
-              type="email"
-              className="form-control"
-              id="floatingInput"
-              placeholder="Email do colaborador"
-              required
-            />
-            <div>
-              <button type="submit" className={styles.button_invite}>
-                Convidar novo editor
-              </button>
-              <GrClose className={styles.close} />
-            </div>
+        <div className={`mb-3 container-input`}>
+          <input
+            type="email"
+            className="form-control"
+            id="floatingInput"
+            placeholder="Email do colaborador"
+            required
+          />
+          <div>
+            <button type="submit" className={styles.button_invite}>
+              Convidar novo editor
+            </button>
+            <GrClose className={styles.close} />
           </div>
-        </form>
+        </div>
       </div>
       <div className={styles.names}>
         <p>

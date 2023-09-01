@@ -2,23 +2,31 @@ import { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import styles from './Projects.module.css';
 import Modal from '../../../Components/Modal';
+import NewProjectModal from '../NewProjectModal';
+import { useAuth } from '../../../contexts/Auth';
+import { useNavigate } from 'react-router-dom';
 
 function Projects() {
-  const [projects, setProjects] = useState([]);
+  let projects = [];
   const [projectsCard, setProjectsCard] = useState([]);
-  const [dropdown, setDropdown] = useState('');
+  const [showModal, setShowModal] = useState(false);
+  const { token } = useAuth();
+  const navigate = useNavigate();
   const text = useRef('');
 
   useEffect(() => {
     axios({
       method: 'get',
-      url: 'http://localhost:5000/projects',
+      url: 'http://localhost:5000/users_has_projects',
+      headers: {
+        'x-access-token': token,
+      },
       responseType: 'json',
     })
       .then((response) => {
-        const projects = response.data;
-
-        setProjects(projects);
+        const data = response.data;
+        console.log('data', data);
+        projects = data;
         setProjectsCard(projects);
       })
       .catch((err) => console.log(err));
@@ -30,21 +38,29 @@ function Projects() {
 
       if (project) {
         return setProjectsCard(projects.filter((p) => p.name === project.name));
-      } else {
-        return setProjectsCard([]);
       }
     }
-    return setProjectsCard(projects);
+    setProjectsCard(projects);
   };
 
-  const newProject = () => {};
+  const handleProject = (id) => {
+    navigate({
+      pathname: `/project/${id}`,
+    });
+  };
+
+  const newProject = () => {
+    setShowModal(true);
+  };
 
   return (
     <div className={styles.home}>
       <div className={styles.container}>
         <div className={styles.text_home}>Seus Projetos</div>
         <div className={styles.search_button}>
-          <Modal></Modal>
+          <Modal show={showModal} setShowModal={setShowModal}>
+            <NewProjectModal setShowModal={setShowModal} />
+          </Modal>
 
           <button className={styles.btn_newhome} onClick={newProject}>
             Novo Projeto
@@ -65,7 +81,12 @@ function Projects() {
 
       <div className={styles.project}>
         {projectsCard.map((project, index) => (
-          <div key={index} className={styles.project_card}>
+          <div
+            key={index}
+            id={project.id}
+            className={styles.project_card}
+            onClick={() => handleProject(project.id)}
+          >
             {project.name}
           </div>
         ))}

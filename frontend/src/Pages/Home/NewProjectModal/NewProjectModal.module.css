@@ -4,31 +4,28 @@
   background-color: var(--branco);
   border: none;
   box-shadow: 5px 5px 5px -3px rgba(0, 0, 0, 0.1);
-  padding: 1.8em;
+  padding: 1em;
   display: flex;
   flex-direction: column;
-  align-items: center;
   & form {
     width: 100%;
+    text-align: center;
   }
 }
 
+.title {
+  margin-bottom: 10px;
+  font-size: 1.2em;
+  text-align: center;
+}
+
 .container-input {
-  width: 100%;
   & input {
     font-size: 0.9em;
   }
 }
 
-.link {
-  font-size: 0.8em;
-  text-decoration: none;
-  color: black;
-  padding: 1.25em;
-}
-
-.button_login,
-.button_register {
+.button_save {
   border: none;
   color: white;
   width: 35%;
@@ -38,33 +35,13 @@
   padding: 0.5em 0;
   border-radius: 0.3em;
   transition: all 0.1s ease-in-out;
-  margin-left: 4em;
+  margin: auto;
 }
 
-.button_login {
+.button_save {
   background-color: var(--verde);
 }
 
-.button_login:hover {
+.button_save:hover {
   background-color: #85b33b;
-}
-
-.button_close {
-  background-position: 0.5em;
-  background-color: var(--cinza-medio);
-  border: none;
-  color: white;
-  width: 15%;
-  font-size: 0.9em;
-  padding: 0.5em 0.95em 0.5em 0em;
-  border-radius: 0.3em;
-  margin-top: 0.6em;
-  font-weight: 500;
-  transition: all 0.1s ease-in-out;
-  text-align: end;
-  margin-left: 1em;
-}
-
-.button_close:hover {
-  background-color: #acabab;
 }

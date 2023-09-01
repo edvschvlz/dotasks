@@ -124,10 +124,10 @@ const RegisterCard = () => {
         <button type="submit" onClick={handleSubmit} className={styles.button_register}>
           Registrar
         </button>
+        <Link to="/" className={styles.link}>
+          Já possui conta? Clique aqui para fazer login
+        </Link>
       </form>
-      <Link to="/" className={styles.link}>
-        Já possui conta? Clique aqui para fazer login
-      </Link>
     </div>
   );
 };
